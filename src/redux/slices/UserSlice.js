@@ -36,8 +36,8 @@ export const getUserDetails = createAsyncThunk(
     const apiUrl = process.env.REACT_APP_API_URL;
     const apiService = process.env.REACT_APP_SERVICE;
     const apiVersion = process.env.REACT_APP_API_VERSION;
-    const username = "fbadea";
-    const password = "Lorenzo2!";
+    const username = "sungureanu";
+    const password = "Lorenzo!45";
 
     try {
       const config = {
@@ -109,7 +109,7 @@ export const getPatientDetails = createAsyncThunk(
     const apiService = `GetPatient`;
     let patientId = `70470`;
     const token = state.user.token;
-   
+
     try {
       const config = {
         method: "get",
@@ -208,7 +208,6 @@ export const userSlice = createSlice({
       state.getUserDetailsStatus = true;
       state.isFetching = false;
       state.token = payload.ControlActEvent.Subject.Value[0].SecurityToken;
-      
     },
     [getUserDetails.rejected]: (state, { payload }) => {
       state.getUserDetailsStatus = false;
