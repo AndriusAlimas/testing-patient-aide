@@ -8,9 +8,9 @@ import { getAllergies } from "../../../../../../redux/slices/Allergies";
 
 export default function AllergiesCarouselCard() {
   const dispatch = useDispatch();
-  const handleOnClick = ()=>{
+  const handleOnClick = () => {
     dispatch(getAllergies());
-  }
+  };
   return (
     <>
       <DashboardCarouselCards

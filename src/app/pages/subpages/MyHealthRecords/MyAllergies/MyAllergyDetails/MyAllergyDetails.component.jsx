@@ -6,8 +6,10 @@ import { GenericPopUp } from "../../../../../components";
 
 // Import: Constants
 import { allergies } from "../../../../../../assets/constants/constants";
+import { useSelector } from "react-redux";
 
-export default function MyAllergyDetails({ setPopUp, popUp, allergyDetails }) {
+export default function MyAllergyDetails({ setPopUp, popUp }) {
+  const allergyDetails = useSelector((state) => state.allergies.allergyDetails);
   return (
     <GenericPopUp popUp={popUp} setPopUp={setPopUp}>
       <table id="MyAllergyDetails">
@@ -18,11 +20,11 @@ export default function MyAllergyDetails({ setPopUp, popUp, allergyDetails }) {
           </tr>
           <tr>
             <td>{allergies.Severity}</td>
-            <td>{allergyDetails.reactionDisplay}</td>
+            <td>{allergyDetails.IntoleranceSeverity}</td>
           </tr>
           <tr>
             <td>{allergies.Reaction}</td>
-            <td>{allergyDetails.manifestationDisplay}</td>
+            <td>{allergyDetails.manifestation}</td>
           </tr>
           <tr>
             <td>{allergies.Category}</td>
@@ -30,7 +32,7 @@ export default function MyAllergyDetails({ setPopUp, popUp, allergyDetails }) {
           </tr>
           <tr>
             <td>{allergies.OnsetDateTime}</td>
-            <td>{allergyDetails.onSetDate}</td>
+            <td>{allergyDetails.assertedDate}</td>
           </tr>
           <tr>
             <td>{allergies.RecordedDateTime}</td>
@@ -38,24 +40,24 @@ export default function MyAllergyDetails({ setPopUp, popUp, allergyDetails }) {
           </tr>
           <tr>
             <td>{allergies.RecordedBy}</td>
-            <td>{allergyDetails.recordedByID}</td>
+            <td>{allergyDetails.practitionerID}</td>
           </tr>
           <tr>
             <td>{allergies.PractitionerID}</td>
-            <td>{allergyDetails.recordedByID}</td>
+            <td>{allergyDetails.practitionerID}</td>
           </tr>
           <tr>
             <td>{allergies.AllergyType}</td>
-            <td>{allergyDetails.type}</td>
+            <td>{allergyDetails.IntoleranceCategory}</td>
           </tr>
           <tr>
             <td>{allergies.IntoleranceType}</td>
-            <td>{allergyDetails.manifestationDisplay}</td>
+            <td>{allergyDetails.IntoleranceType}</td>
           </tr>
-          {/* <tr>
+          <tr>
             <td>{allergies.InformationSource}</td>
-            <td>{allergyDetails.InformationSource}</td>
-          </tr> */}
+            <td>{allergyDetails.informationSource}</td>
+          </tr>
           <tr>
             <td>{allergies.VerificationStatus}</td>
             <td>{allergyDetails.verificationStatus}</td>

@@ -1,7 +1,7 @@
 // Import: Packages
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Import: Components
 import MyAllergyDetails from "./MyAllergyDetails/MyAllergyDetails.component";
@@ -17,8 +17,10 @@ import rightArrow from "../../../../../assets/img/icons/Left-Chevron.svg";
 
 // Import: DummyAllergyData
 // import { allergies } from "../../../../demo-data/dummyAllergies";
+import { getAllergyDetails } from "../../../../../redux/slices/Allergies";
 
 export default function MyAllergies({ sidebar }) {
+  const dispatch = useDispatch();
   const [popUp, setPopUp] = useState(false);
 
   const allergiesList = useSelector((state) => state.allergies.allergiesList);
@@ -28,6 +30,9 @@ export default function MyAllergies({ sidebar }) {
   const { pageTransitionsStyle } = useSelector(
     (state) => state.pageTransitions
   );
+  const handleOnClick = () => {
+    dispatch(getAllergyDetails(allergyDetails.current.id));
+  };
   return (
     <motion.div
       initial={pageTransitionsStyle.initial}
@@ -66,13 +71,9 @@ export default function MyAllergies({ sidebar }) {
           </div>
         </div> */}
 
-        <div className="mobileVersion">
+        <div className="mobileVersion" onClick={handleOnClick}>
           {popUp ? (
-            <MyAllergyDetails
-              popUp={popUp}
-              setPopUp={setPopUp}
-              allergyDetails={allergyDetails.current}
-            />
+            <MyAllergyDetails popUp={popUp} setPopUp={setPopUp} />
           ) : null}
           <PageHeader title="Allergies" returnRoute={"/dashboard"} />
           <div id="iconBg">
