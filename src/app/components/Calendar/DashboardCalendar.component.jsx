@@ -106,72 +106,74 @@ export default function DashboardCalendar({ todayDate }) {
 
   return (
     <>
-      <DashboardCalendarContainer>
-        <div id="currentDateContainer">
-          <CurrentDate
-            day={getFullDayName(todayDate)}
-            date={todayDate.getDate()}
-          />
-
-          <Link
-            to={todayAppointment ? "/calendar" : ""}
-            state={{
-              appointment: todayAppointment,
-              appointments: appointments,
-            }}>
-            <TodaysAppointment
-              appointment={todayAppointment}
-              color="#106493"
-              backgroundColor="#E9F7FE"
-              timeColor="#3a9ace"
-              day="Today"
-              title="Appointment"
-              time={appointmentTime}
+      {futureAppointments.size > 0 || todayAppointment !== undefined ? (
+        <DashboardCalendarContainer>
+          <div id="currentDateContainer">
+            <CurrentDate
+              day={getFullDayName(todayDate)}
+              date={todayDate.getDate()}
             />
-          </Link>
-        </div>
-        <div id="futureDatesContainer">
-          {firstFutureAppointment && (
+
             <Link
-              to="/calendar"
+              to={todayAppointment ? "/calendar" : ""}
               state={{
-                appointment: firstFutureAppointment,
-                appointments: [...futureAppointments],
+                appointment: todayAppointment,
+                appointments: appointments,
               }}>
-              <FutureAppointment
-                appointment={firstFutureAppointment}
+              <TodaysAppointment
+                appointment={todayAppointment}
                 color="#106493"
                 backgroundColor="#E9F7FE"
                 timeColor="#3a9ace"
-                day={getDayDifference(firstFutureAppointment, todayDate)}
+                day="Today"
                 title="Appointment"
-                time={futureAppointmentsTime[0]}
+                time={appointmentTime}
               />
             </Link>
-          )}
-          {secondFutureAppointment && (
-            <Link
-              to="/calendar"
-              state={{
-                appointment: secondFutureAppointment,
-                appointments: [...futureAppointments],
-              }}>
-              <FutureAppointment
-                appointment={secondFutureAppointment}
-                day={getDayDifference(secondFutureAppointment, todayDate)}
-                color="#106493"
-                backgroundColor="#E9F7FE"
-                timeColor="#3a9ace"
-                title="Appointment"
-                // color={"#7B4588"}
-                // timeColor="#CC73E1"
-                time={futureAppointmentsTime[1]}
-              />
-            </Link>
-          )}
-        </div>
-      </DashboardCalendarContainer>
-      {todayAppointment === undefined && futureAppointments.size === 0 && (
+          </div>
+
+          <div id="futureDatesContainer">
+            {firstFutureAppointment && (
+              <Link
+                to="/calendar"
+                state={{
+                  appointment: firstFutureAppointment,
+                  appointments: [...futureAppointments],
+                }}>
+                <FutureAppointment
+                  appointment={firstFutureAppointment}
+                  color="#106493"
+                  backgroundColor="#E9F7FE"
+                  timeColor="#3a9ace"
+                  day={getDayDifference(firstFutureAppointment, todayDate)}
+                  title="Appointment"
+                  time={futureAppointmentsTime[0]}
+                />
+              </Link>
+            )}
+            {secondFutureAppointment && (
+              <Link
+                to="/calendar"
+                state={{
+                  appointment: secondFutureAppointment,
+                  appointments: [...futureAppointments],
+                }}>
+                <FutureAppointment
+                  appointment={secondFutureAppointment}
+                  day={getDayDifference(secondFutureAppointment, todayDate)}
+                  color="#106493"
+                  backgroundColor="#E9F7FE"
+                  timeColor="#3a9ace"
+                  title="Appointment"
+                  // color={"#7B4588"}
+                  // timeColor="#CC73E1"
+                  time={futureAppointmentsTime[1]}
+                />
+              </Link>
+            )}
+          </div>
+        </DashboardCalendarContainer>
+      ) : (
         <DashboardCalendarContainer>
           <div id="currentDateContainer">
             <CurrentDate
@@ -184,6 +186,34 @@ export default function DashboardCalendar({ todayDate }) {
           </div>
         </DashboardCalendarContainer>
       )}
+
+      {/* {todayAppointment === undefined && futureAppointments.size === 0 && (
+        <DashboardCalendarContainer>
+          <div id="currentDateContainer">
+            <CurrentDate
+              day={getFullDayName(todayDate)}
+              date={todayDate.getDate()}
+            />
+          </div>
+          <div id="noAppointmentsContainer">
+            <h2 id="noAppointments">No Upcoming Appointments</h2>
+          </div>
+        </DashboardCalendarContainer>
+      )} */}
+      {/* {console.log(todayAppointment)}
+      {todayAppointment === undefined && futureAppointments.size === 0 && (
+        <DashboardCalendarContainer>
+          <div id="currentDateContainer">
+            <CurrentDate
+              day={getFullDayName(todayDate)}
+              date={todayDate.getDate()}
+            />
+          </div>
+          <div id="noAppointmentsContainer">
+            <h2 id="noAppointments">No Upcoming Appointments</h2>
+          </div>
+        </DashboardCalendarContainer>
+      )} */}
     </>
   );
 }

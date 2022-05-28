@@ -1,8 +1,8 @@
 export const appointments = [
   {
     id: 1,
-    startAt: "2022-05-24T20:00:00.000Z",
-    endAt: "2022-05-24T21:15:00.000Z",
+    startAt: "2022-05-25T20:00:00.000Z",
+    endAt: "2022-05-25T21:15:00.000Z",
     summary: "Appointment",
     color: "blue",
     calendarID: "work",
@@ -23,8 +23,8 @@ export const appointments = [
   },
   {
     id: 2,
-    startAt: "2022-05-27T17:00:00.000Z",
-    endAt: "2022-05-27T18:00:00.000Z",
+    startAt: "2022-05-25T17:00:00.000Z",
+    endAt: "2022-05-25T18:00:00.000Z",
     summary: "Appointment",
     color: "blue",
     appointmentID: "OUTPATIENT-700000000057",
@@ -45,8 +45,8 @@ export const appointments = [
 
   {
     id: 3,
-    startAt: "2022-05-23T18:00:00.000Z",
-    endAt: "2022-05-23T19:00:00.000Z",
+    startAt: "2022-05-25T18:00:00.000Z",
+    endAt: "2022-05-25T19:00:00.000Z",
     summary: "Appointment",
     color: "blue",
     calendarID: "work",
