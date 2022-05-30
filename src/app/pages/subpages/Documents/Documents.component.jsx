@@ -4,9 +4,6 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 import { Card } from "react-bootstrap";
-import documents from "../../../../assets/img/images/documents.jpg";
-import questionnaires from "../../../../assets/img/images/questionnaires.jpg";
-import results from "../../../../assets/img/images/results.jpg";
 
 // Import: Elements
 import { SectionContainer, CardContainer } from "./Documents.elements";
@@ -32,7 +29,7 @@ export default function Documents() {
             <CardContainer>
               <Link to="/my-documentation">
                 <Card className="card">
-                  <Card.Img className="cardImg" variant="top" src={documents} />
+                  <Card.Img className="cardImg" variant="top" src={""} />
 
                   <Card.Body className="cardBody">
                     <div className="details">
@@ -56,7 +53,7 @@ export default function Documents() {
                   <Card.Img
                     className="cardImg"
                     variant="top"
-                    src={questionnaires}
+                    src={""}
                   />
 
                   <Card.Body className="cardBody">
@@ -77,7 +74,7 @@ export default function Documents() {
             <CardContainer>
               <Link to="/my-test-results">
                 <Card className="card">
-                  <Card.Img className="cardImg" variant="top" src={results} />
+                  <Card.Img className="cardImg" variant="top" src={""} />
 
                   <Card.Body className="cardBody">
                     <div className="details">

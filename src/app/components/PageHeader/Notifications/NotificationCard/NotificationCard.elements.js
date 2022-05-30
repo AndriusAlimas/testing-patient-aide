@@ -1,31 +1,21 @@
 // Import: packages
 import styled from "styled-components";
-import { keyframes } from "styled-components";
-
-const dropdown = keyframes`
-0%{
-    transform: translateY(-100%);
-    
-}
-100%{
-    transform: translateY(0%);
-}`;
 
 // Elements
 export const NotificationStyles = styled.section`
   position: relative;
-  background-color: 		rgba(162, 170, 173, 0.2);
+  background-color: rgba(162, 170, 173, 0.2);
   opacity: calc() 0.5;
   border-radius: 0.5rem;
   position: relative;
   margin: 0.5rem 0;
   z-index: 91;
 
-  a{
+  a {
     padding-right: 1rem;
   }
 
-  li{
+  li {
     display: flex;
     align-items: center;
   }
@@ -54,13 +44,12 @@ export const NotificationStyles = styled.section`
     }
   }
 
-
-  #closeIcon{
+  #closeIcon {
     top: 0.25rem;
     position: absolute;
     right: 0.5rem;
     height: 2rem;
     width: 2rem;
-    padding:.25rem;
+    padding: 0.25rem;
   }
 `;

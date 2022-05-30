@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyTestResults.elements";
-import { ListViewContainer } from "../../../../Styles/ListsView/ListView.elements";
+import { ListViewContainer } from "../../../../styles/ListsView/ListView.elements";
 
 // Import: Components
 import { GenericCard } from "../../../../components";

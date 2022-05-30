@@ -1,6 +1,5 @@
 import axios from "axios";
 const apiLogin = process.env.REACT_APP_LOGIN_API;
-const localUrl = "http://localhost:8080";
 const currentUrl = apiLogin;
 
 export const setCheckCredentialsErrorMessage = (

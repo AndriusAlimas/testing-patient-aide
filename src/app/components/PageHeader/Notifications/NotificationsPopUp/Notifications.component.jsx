@@ -9,9 +9,7 @@ import NotificationCard from "../NotificationCard/NotificationCard.component";
 import { notifications } from "../../../../demo-data/notificationData";
 
 // Component: Notifications
-export default function NotificationsPopUp({
-}) {
-  
+export default function NotificationsPopUp() {
   const [displayNotifications, setDisplayNotifications] =
     useState(notifications);
 
@@ -22,10 +20,7 @@ export default function NotificationsPopUp({
   }
 
   return (
-    <GenericPopUp
-      data-testid={"notifications"}
-      title="Notifications"
-    >
+    <GenericPopUp data-testid={"notifications"} title="Notifications">
       <ul>
         {displayNotifications.map((notification, index) => (
           <div key={index}>

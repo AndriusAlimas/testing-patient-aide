@@ -4,7 +4,6 @@ import { TextInput } from "./FormikLib";
 import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { Text } from "../../../components/index";
-import { resetPassword } from "../../../../redux/userActions";
 import { AUTH } from "../../../../assets/constants/constants";
 
 import {

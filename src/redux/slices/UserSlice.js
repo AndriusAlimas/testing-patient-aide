@@ -90,70 +90,12 @@ export const signupUser2 = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
+      console.log("here");
+
       console.log("Error", error.response.data);
     }
   }
 );
-
-export const getPatientDetails = createAsyncThunk(
-  "getPatientDetails",
-  async (arg, { getState }) => {
-    // const state = getState();
-    // const apiUrl = process.env.REACT_APP_API_URL;
-    // const apiService = process.env.REACT_APP_SERVICE;
-    // const apiVersion = process.env.REACT_APP_API_VERSION;
-    // const username = "fbadea";
-    // const password = "Lorenzo12!";
-    const state = getState();
-    const envURL = `https://oneedfhirtest.azurewebsites.net`;
-    const apiService = `GetPatient`;
-    let patientId = `70470`;
-    const token = state.user.token;
-
-    try {
-      const config = {
-        method: "get",
-        url: `${envURL}/${apiService}/${patientId}`,
-        headers: {
-          accept: "application/json",
-          "Authorization-token": token,
-        },
-      };
-
-      const response = await axios(config);
-      const data = await response.data;
-      return data;
-    } catch (error) {
-      console.log("Error", error.response.data);
-    }
-  }
-);
-
-export const getNOK = createAsyncThunk("getNOK", async (arg, { getState }) => {
-  const state = getState();
-  const envURL = `https://oneedfhirtest.azurewebsites.net`;
-  const apiService = `GetNokInfo`;
-  let patientId = `70470`;
-  const token = state.user.token;
-
-  try {
-    const config = {
-      method: "get",
-      url: `${envURL}/${apiService}/${patientId}`,
-      headers: {
-        accept: "application/json",
-        "Authorization-token": token,
-      },
-    };
-
-    const response = await axios(config);
-    const data = await response.data;
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log("Error", error.response.data);
-  }
-});
 
 export const userSlice = createSlice({
   name: "user",
@@ -168,10 +110,6 @@ export const userSlice = createSlice({
     token: "",
     isAuthenticated: false,
     getUserDetailsStatus: false,
-    userDetails2: [],
-    userDetailsStatus: false,
-    NOK: [],
-    nokStatus: false,
   },
   reducers: {
     updateCheckedCredentials: (state, { payload }) => {
@@ -229,26 +167,6 @@ export const userSlice = createSlice({
       state.errorMessage = payload.message;
     },
     [signupUser2.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [getPatientDetails.fulfilled]: (state, { payload }) => {
-      state.userDetails2 = payload;
-      state.userDetailsStatus = true;
-    },
-    [getPatientDetails.rejected]: (state, { payload }) => {
-      state.userDetailsStatus = false;
-    },
-    [getPatientDetails.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [getNOK.fulfilled]: (state, { payload }) => {
-      state.NOK = payload;
-      state.nokStatus = true;
-    },
-    [getNOK.rejected]: (state, { payload }) => {
-      state.nokStatus = false;
-    },
-    [getNOK.pending]: (state) => {
       state.isFetching = true;
     },
   },

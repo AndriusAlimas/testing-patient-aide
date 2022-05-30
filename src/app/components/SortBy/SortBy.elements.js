@@ -4,8 +4,8 @@ import styled from "styled-components";
 // Elements
 export const SortByFilterContainer = styled.div`
   position: absolute;
-  top: 1.3rem;
-  right: 1rem;
+  top: -0.2rem;
+  right: -1.5rem;
   z-index: 3;
 
   img {

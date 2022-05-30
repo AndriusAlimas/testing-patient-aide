@@ -29,12 +29,19 @@ export const StyledTitle = styled.h2`
 export const Logo = styled.div`
   height: 100px;
   width: 160px;
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-  background-size: center;
-  display: center;
   margin: auto;
   margin-bottom: 30px;
+
+  & svg {
+    .cls-1 {
+      fill: white;
+    }
+
+    .cls-3 {
+      fill: white;
+      stroke: white;
+    }
+  }
 `;
 
 export const DisclaimerText = styled.p`

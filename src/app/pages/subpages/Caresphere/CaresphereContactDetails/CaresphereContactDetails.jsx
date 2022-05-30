@@ -12,7 +12,6 @@ export default function CaresphereContactDetails({
   popUp,
   caresphereContact,
 }) {
-  console.log(caresphereContact);
   return (
     <GenericPopUp popUp={popUp} setPopUp={setPopUp}>
       <table id="conditionDetails">
@@ -23,7 +22,7 @@ export default function CaresphereContactDetails({
           </tr>
           <tr>
             <td>{caresphereContactInfo.firstName}</td>
-            <td>{caresphereContact.firstname}</td>
+            <td>{caresphereContact.firstName}</td>
           </tr>
           <tr>
             <td>{caresphereContactInfo.surname}</td>

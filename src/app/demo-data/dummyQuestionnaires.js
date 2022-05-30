@@ -23,7 +23,7 @@ export const questionnaires = [
                 "valueString": "api/v35/Binary/FormInstance~70678~700000010723"
             }
         ],
-        "encounter": "ENC0006249",
+        "encounter": "ENC0004141",
         "questionnaireVersion": "F0000542-11.0",
         "questionnaireName": "RWW ED Triage Form",
         "status": "in-progress"
@@ -110,7 +110,7 @@ export const questionnaires = [
                 "valueString": "api/v35/Binary/FormInstance~70678~700000010706"
             }
         ],
-        "encounter": "ENC0006249",
+        "encounter": "ENC0004743",
         "questionnaireVersion": "F0000542-11.0",
         "questionnaireName": "RWW ED Triage Form",
         "status": "completed"
@@ -139,7 +139,7 @@ export const questionnaires = [
                 "valueString": "api/v35/Binary/FormInstance~70678~700000010704"
             }
         ],
-        "encounter": "ENC0006249",
+        "encounter": "ENC0004743",
         "questionnaireVersion": "F0000542-11.0",
         "questionnaireName": "RWW ED Triage Form",
         "status": "in-progress"

@@ -15,14 +15,16 @@ import {
   CopyrightText,
   VersionNumberText,
 } from "./LandingPage.elements";
-import OnePatientLogo from "../../../../assets/img/logo/OnePatientLogoWhite.png";
+import { ReactComponent as PatientAideLogo } from "../../../../assets/img/logo/Patient-AIDE.svg";
 
 export default function LandingPage() {
   return (
     <Container data-testid={"LandingPage"}>
       <Wrapper>
         <StyledTitle>{LANDING_PAGE_TEXT.WELCOME_TO}</StyledTitle>
-        <Logo image={OnePatientLogo} />
+        <Logo>
+          <PatientAideLogo />
+        </Logo>
         <DisclaimerText>{LANDING_PAGE_TEXT.DISCLAIMER[0]}</DisclaimerText>
         <DisclaimerText>{LANDING_PAGE_TEXT.DISCLAIMER[1]}</DisclaimerText>
         <DisclaimerText>{LANDING_PAGE_TEXT.DISCLAIMER[2]}</DisclaimerText>

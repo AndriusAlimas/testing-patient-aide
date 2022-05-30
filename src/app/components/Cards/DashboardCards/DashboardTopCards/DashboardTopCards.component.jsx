@@ -8,10 +8,9 @@ export default function DashboardTopCards({
   title,
   text,
   bgImg,
-  onClick,
 }) {
   return (
-    <CardContainer onClick={onClick} bgImg={bgImg}>
+    <CardContainer bgImg={bgImg}>
       <Link to={linkTo}>
         <div id="textContainer">
           <h1 id="title">{title}</h1>

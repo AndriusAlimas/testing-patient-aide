@@ -29,10 +29,9 @@ export default function MyVisitDetails() {
           returnRoute={"/my-visits"}
         />
         <div id="header">
-     
-          <h2 id="visitTitle">{encounter.serviceType}</h2>
+          <h2 id="visitTitle">{encounter.class}</h2>
           <p>
-            {moment(encounter.start).format("MM/DD/YYYY MM:HHa")}
+            {moment(encounter.encounterStartDate).format("MM/DD/YYYY MM:HHa")}
           </p>
         </div>
         <MyVisitDetailsCard

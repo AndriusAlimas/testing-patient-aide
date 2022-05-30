@@ -13,7 +13,6 @@ export { default as MyDocumentation } from "./subpages/MyHealthRecords/MyDocumen
 export { default as MyAllergies } from "./subpages/MyHealthRecords/MyAllergies/MyAllergies.component";
 export { default as MyAllergyDetails } from "./subpages/MyHealthRecords/MyAllergies/MyAllergyDetails/MyAllergyDetails.component";
 export { default as Dashboard } from "./Dashboard/Dashboard.component";
-
 export { default as CareContactsDashboardCard } from "./Dashboard/CareContacts/CareContactsDashboardCard.component";
 export { default as Caresphere } from "./subpages/Caresphere/Caresphere.component";
 export { default as HealthTracker } from "./HealthTracker/HealthTracker.component";

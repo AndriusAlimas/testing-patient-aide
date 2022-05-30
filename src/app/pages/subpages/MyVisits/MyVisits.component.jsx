@@ -1,11 +1,11 @@
 // Import: Packages
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
 // Import: Elements
 import { SectionContainer } from "./MyVisits.elements";
-import { ListViewContainer } from "../../../Styles/ListsView/ListView.elements";
+import { ListViewContainer } from "../../../styles/ListsView/ListView.elements";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
@@ -24,13 +24,9 @@ export default function MyVisits({ sidebar }) {
   const { pageTransitionsStyle } = useSelector(
     (state) => state.pageTransitions
   );
-  const appointments = useSelector(({ appointments }) => {
-    return appointments.allAppointments;
-  });
- console.log(appointments)
-  const appointmentsCopy = appointments ?[...appointments]:[] ;
-  const visitsDateSorted = appointmentsCopy.sort((a, b) => {
-    return new Date(b.start) - new Date(a.start);
+
+  const visitsDateSorted = encounters.sort((a, b) => {
+    return new Date(b.encounterStartDate) - new Date(a.encounterStartDate);
   });
 
   return (
@@ -60,11 +56,11 @@ export default function MyVisits({ sidebar }) {
                     {/* <Link key={index} to="/my-visit-details"> */}
                     <li id="cardContainer">
                       <div id="cardTextContainer">
-                        <h2 id="cardHeader">{encounter.serviceType}</h2>
+                        <h2 id="cardHeader">{encounter.class}</h2>
                         <div className="cardDetailText">
                           <p>
                             {" "}
-                            {moment(encounter.start).format(
+                            {moment(encounter.encounterStartDate).format(
                               "DD/MM/YYYY MM:HHa"
                             )}
                           </p>

@@ -35,6 +35,9 @@ export const ListViewContainer = styled.section`
     color: black;
     font-size: 1rem;
     font-weight: normal;
+    font-size: 1.1rem;
+    margin: ${({ questionnaireMenu }) => questionnaireMenu && "0"};
+    max-width: 80%;
 
     span {
       font-size: 1rem;
@@ -51,7 +54,7 @@ export const ListViewContainer = styled.section`
     right: 1rem;
     top: 1rem;
 
-    p{
+    p {
       margin: 0;
     }
 
@@ -71,9 +74,6 @@ export const ListViewContainer = styled.section`
     #cardHeader {
       color: grey;
       font-size: 0.8rem;
-    }
-    .cardDetailText {
-      font-size: 1.1rem;
     }
 
     #telephone {

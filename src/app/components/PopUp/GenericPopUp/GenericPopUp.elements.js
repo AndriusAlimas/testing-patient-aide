@@ -12,18 +12,18 @@ const appear = keyframes`
 }`;
 
 export const GenericPopUpElement = styled.section`
-  box-shadow: 3px -5px 6px #00000040;
+  box-shadow: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu ? "none" : " 3px -5px 6px #00000040"};
   background-color: #f3f1f7;
   border-radius: 1rem 1rem 0 0;
   padding: 1rem 0;
   position: fixed;
   margin: 0 auto;
   width: 98vw;
-  height: 98%;
+  height: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu === true ? " fit-content" : "98%"}; 
   bottom: 0;
   animation: ${appear} 0.6s;
   overflow: hidden;
-  z-index: 12;
+  z-index: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu ? "30" : "12"}; 
 
   header {
     h1 {

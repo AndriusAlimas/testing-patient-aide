@@ -1,7 +1,7 @@
 {
-  "short_name": "OnePatient",
-  "name": "OnePatient",
-  "app_name": "OnePatient",
+  "short_name": "PatientAide",
+  "name": "PatientAide",
+  "app_name": "PatientAide",
   "id": ".",
   "start_url": ".",
   "scope": ".",
@@ -17,18 +17,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo192.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "196x196",
       "purpose": "any maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "512x512"
     }

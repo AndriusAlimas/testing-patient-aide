@@ -1,6 +1,3 @@
-import pdf from "./files/exampleFile.pdf";
-import word from "./files/example.docx";
-
 export const documents = [
   {
     name: "All correspondence mr Benjamin Anderson 2010928125114",

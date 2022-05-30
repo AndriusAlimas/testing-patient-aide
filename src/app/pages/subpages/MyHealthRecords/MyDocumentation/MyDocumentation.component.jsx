@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyDocumentation.elements";
-import { ListViewContainer } from "../../../../Styles/ListsView/ListView.elements";
+import { ListViewContainer } from "../../../../styles/ListsView/ListView.elements";
 
 // Import: dummyDocuments
 import { documents } from "../../../../demo-data/dummyDocuments/dummyDocuments";

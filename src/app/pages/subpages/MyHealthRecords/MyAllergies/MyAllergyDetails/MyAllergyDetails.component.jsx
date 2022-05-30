@@ -6,49 +6,47 @@ import { GenericPopUp } from "../../../../../components";
 
 // Import: Constants
 import { allergies } from "../../../../../../assets/constants/constants";
-import { useSelector } from "react-redux";
 
-export default function MyAllergyDetails({ setPopUp, popUp }) {
-  const allergyDetails = useSelector((state) => state.allergies.allergyDetails);
+export default function MyAllergyDetails({ setPopUp, popUp, allergyDetails }) {
   return (
     <GenericPopUp popUp={popUp} setPopUp={setPopUp}>
       <table id="MyAllergyDetails">
         <tbody>
           <tr>
             <td>{allergies.Allergen}</td>
-            <td>{allergyDetails.allergyName}</td>
+            <td>{allergyDetails.Allergen}</td>
           </tr>
           <tr>
             <td>{allergies.Severity}</td>
-            <td>{allergyDetails.IntoleranceSeverity}</td>
+            <td>{allergyDetails.Severity}</td>
           </tr>
           <tr>
             <td>{allergies.Reaction}</td>
-            <td>{allergyDetails.manifestation}</td>
+            <td>{allergyDetails.Reaction}</td>
           </tr>
           <tr>
             <td>{allergies.Category}</td>
-            <td>{allergyDetails.category}</td>
+            <td>{allergyDetails.Category}</td>
           </tr>
           <tr>
             <td>{allergies.OnsetDateTime}</td>
-            <td>{allergyDetails.assertedDate}</td>
+            <td>{allergyDetails.OnsetDateTime}</td>
           </tr>
           <tr>
             <td>{allergies.RecordedDateTime}</td>
-            <td>{allergyDetails.assertedDate}</td>
+            <td>{allergyDetails.RecordedDateTime}</td>
           </tr>
           <tr>
             <td>{allergies.RecordedBy}</td>
-            <td>{allergyDetails.practitionerID}</td>
+            <td>{allergyDetails.RecordedBy}</td>
           </tr>
           <tr>
             <td>{allergies.PractitionerID}</td>
-            <td>{allergyDetails.practitionerID}</td>
+            <td>{allergyDetails.PractitionerID}</td>
           </tr>
           <tr>
             <td>{allergies.AllergyType}</td>
-            <td>{allergyDetails.IntoleranceCategory}</td>
+            <td>{allergyDetails.AllergyType}</td>
           </tr>
           <tr>
             <td>{allergies.IntoleranceType}</td>
@@ -56,11 +54,11 @@ export default function MyAllergyDetails({ setPopUp, popUp }) {
           </tr>
           <tr>
             <td>{allergies.InformationSource}</td>
-            <td>{allergyDetails.informationSource}</td>
+            <td>{allergyDetails.InformationSource}</td>
           </tr>
           <tr>
             <td>{allergies.VerificationStatus}</td>
-            <td>{allergyDetails.verificationStatus}</td>
+            <td>{allergyDetails.VerificationStatus}</td>
           </tr>
         </tbody>
       </table>

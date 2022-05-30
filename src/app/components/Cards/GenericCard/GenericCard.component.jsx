@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import DownloadIcon from "../../../../assets/img/icons/download_calendar.svg";
 
 // Import Utils
-import { createFile } from "../../../utils/fileHelper";
 import ICalendarLink from "react-icalendar-link";
 // Import: Elements
 import { GenericCardContainer } from "./GenericCard.elements";
@@ -31,18 +30,14 @@ export default function GenericCard({
   bgColor,
   appointment,
 }) {
-
   const event = {
     title: appointment.summary,
     description: "My Description",
     startTime: appointment.startAt,
     endTime: appointment.endAt,
     location: appointment.sessionName,
-    attendees: [
-      "Hello World <hello@world.com>",
-      "Hey <hey@test.com>",
-    ]
-  }
+    attendees: ["Hello World <hello@world.com>", "Hey <hey@test.com>"],
+  };
   return (
     <GenericCardContainer
       action={action}
@@ -146,18 +141,15 @@ export default function GenericCard({
             >
               Download Appointment
             </div>
-          </a> */}  
-          
-         
-            <ICalendarLink event={event}>
+          </a> */}
+
+          <ICalendarLink event={event}>
             <div className="download-ics d-flex   align-items-center justify-content-center">
-              <img src={DownloadIcon} alt="Download Icon"  />
-              
-              <h3 >Add To Calendar </h3>
-              </div>
-           
-            </ICalendarLink>
-          
+              <img src={DownloadIcon} alt="Download Icon" />
+
+              <h3>Add To Calendar </h3>
+            </div>
+          </ICalendarLink>
         </>
       )}
     </GenericCardContainer>

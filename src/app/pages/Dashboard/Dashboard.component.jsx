@@ -27,15 +27,12 @@ export default function Dashboard({ sidebar }) {
   const { pageTransitionsStyle } = useSelector(
     (state) => state.pageTransitions
   );
-  const [date, setDate] = useState(new Date());
-  const userDetails = useSelector((state) => {
-    return state.user.userDetails2;
-  });
+  const date = new Date();
 
   return (
     <>
       <PageHeader
-        title={`Welcome ${userDetails.firstname}`}
+        title={`Welcome ${patient.firstName}`}
         notifications="true"
         profile="true"
         dashboard={true}
@@ -50,7 +47,7 @@ export default function Dashboard({ sidebar }) {
           {/* Mobile Version */}
           <div className="mobileVersion">
             {notificationsStatus && <NotificationsPopUp />}
-            {profileStatus && <ProfilePopUp user={userDetails} />}
+            {profileStatus && <ProfilePopUp />}
             <DashboardHead />
             <DashboardCalendar todayDate={date} />
             <div id="dashboardVisitsAndContacts">

@@ -24,6 +24,7 @@ export default function GenericPopUp({
   addAllergyIcon,
   toggleNotificationPage,
   setToggleNotificationPage,
+  AddQuestionnaireMenu,
 }) {
   const dispatch = useDispatch();
   const { notificationsStatus } = useSelector((state) => state.popUpStatus);
@@ -36,6 +37,7 @@ export default function GenericPopUp({
       addAllergyIcon={addAllergyIcon}
       NotificationPage={toggleNotificationPage}
       data-testid={"genericPopUp"}
+      AddQuestionnaireMenu={AddQuestionnaireMenu}
     >
       <header>
         <h1>{title}</h1>
@@ -55,7 +57,7 @@ export default function GenericPopUp({
       </header>
       {addProfileImg && (
         <div id="profileImg">
-          <img src={profileImg} alt="Profile Image" />
+          <img src={profileImg} alt="Profile" />
         </div>
       )}
       {addBannerImg && (

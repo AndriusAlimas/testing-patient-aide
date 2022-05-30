@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { NavigationContainer } from "./Navigation.elements";
 import { Link, useLocation } from "react-router-dom";
 
-
 export default function Navigation() {
   const location = useLocation();
   const [selectedPage, setSelectedPage] = useState(location.pathname);

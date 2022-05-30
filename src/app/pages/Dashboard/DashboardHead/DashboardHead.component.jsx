@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { DashboardHeadContainer } from "./DashboardHead.elements";
 
@@ -29,7 +29,10 @@ export default function DashboardHead() {
           id="notificationMessage"
           onClick={() => dispatch(toggleNotificationsStatus(true))}
         >
-          <div id="notificationText"><NotificationsBell dashboard={true} />You Have Notifications!</div>
+          <div id="notificationText">
+            <NotificationsBell dashboard={true} />
+            You Have Notifications!
+          </div>
         </div>
       )}
     </DashboardHeadContainer>

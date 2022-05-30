@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 
 // Import: Elements
 import { SectionContainer } from "./CurrentMedications.elements";
-import { ListViewContainer } from "../../../Styles/ListsView/ListView.elements";
+import { ListViewContainer } from "../../../styles/ListsView/ListView.elements";
 
 // Import: Components
 import MedicationDetails from "./MedicationDetails/MedicationDetails.component";

@@ -31,10 +31,15 @@ export const LoginFormWrapper = styled.div`
 export const Logo = styled.div`
   height: 100px;
   width: 160px;
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-  background-size: center;
-  margin: auto;
+  margin: 1rem auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    height: 5rem;
+    width: 10rem;
+  }
 `;
 
 // Formik style for input fields

@@ -33,11 +33,12 @@ export const SectionContainer = styled.section`
       }
 
       #questionnaireStatus {
-        width: 100vw;
+        width: 80vw;
         display: flex;
         justify-content: space-around;
-        margin: 1rem 0 1rem 0;
+        margin: 2rem 0 1rem 0;
         border-bottom: 1px solid rgba(133, 131, 134, 0.4);
+        position: relative;
 
         h2 {
           font-size: 1.1rem;
@@ -59,6 +60,16 @@ export const SectionContainer = styled.section`
       }
     }
   }
+`;
+
+export const Overlay = styled.div`
+  transition: opacity 0.5s ease-in;
+  height: 100vh;
+  width: 100vw;
+  background-color:  ${({addNewQuestionnaire}) => addNewQuestionnaire ? "#000" : "rgb(242, 241, 247)"};;
+  opacity: ${({addNewQuestionnaire}) => addNewQuestionnaire ? "0.2" : "0"};
+  z-index: ${({addNewQuestionnaire}) => addNewQuestionnaire ? "21" : "-1"};
+  position: fixed;
 `;
 
 export const CardContainer = styled.div`

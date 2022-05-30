@@ -4,12 +4,11 @@ import { TextInput } from "./FormikLib";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
 import { Text } from "../../../components/index";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AUTH } from "../../../../assets/constants/constants";
 import {
   checkUserCredentials,
   getUserDetails,
-  getPatientDetails,
   updateIsAuthenticated,
 } from "../../../../redux/slices/UserSlice";
 import { setCheckCredentialsErrorMessage } from "../utils";
@@ -23,12 +22,11 @@ import {
 } from "./Login.elements";
 import { colors } from "../../../themes/lightTheme";
 
-import OnePatientLogo from "../../../../assets/img/logo/OnePatientLogo.png";
+import { ReactComponent as PatientAideLogo } from "../../../../assets/img/logo/Patient-AIDE.svg";
 import { FiUser, FiLock } from "react-icons/fi";
 import { RotatingLines } from "react-loader-spinner";
 
 export default function Login() {
-  const { username } = useParams();
   const dispatch = useDispatch();
 
   const handleSignIn = (values, setSubmitting, setFieldError) => {
@@ -47,13 +45,14 @@ export default function Login() {
           .then(setSubmitting(false));
       }
     });
-    dispatch(getPatientDetails());
   };
 
   return (
     <Container data-testid={"Login"}>
       <LoginFormWrapper>
-        <Logo image={OnePatientLogo} />
+        <Logo>
+          <PatientAideLogo />
+        </Logo>
         <Text as="h2" authTitle color={colors.auth.theme} size={20}>
           {AUTH.LOGIN}
         </Text>

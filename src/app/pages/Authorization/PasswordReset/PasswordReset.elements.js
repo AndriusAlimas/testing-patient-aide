@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import background from "../../../../assets/img/login-background.png";
 import { colors } from "../../../themes/lightTheme";
 
@@ -41,7 +40,7 @@ export const StyledLabel = styled.p`
   text-align: left;
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 10px;s
+  margin-bottom: 10px;
 `;
 
 export const StyledTextInput = styled.input`

@@ -1,6 +1,5 @@
 // Import: Packages
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 // import { logoutUser } from "../../../../redux/userActions";
 
@@ -11,9 +10,7 @@ import { GenericPopUp } from "../../..";
 import { patient } from "../../../../demo-data/dummyPatientData";
 
 // Component: ProfilePopUp
-export default function ProfilePopUp({ setPopUp, popUp, user }) {
-  const navigate = useNavigate();
-  console.log(user);
+export default function ProfilePopUp({ setPopUp, popUp }) {
   return (
     <GenericPopUp
       popUp={popUp}
@@ -26,27 +23,27 @@ export default function ProfilePopUp({ setPopUp, popUp, user }) {
         <tbody>
           <tr>
             <td>First Name</td>
-            <td>{user.firstname}</td>
+            <td>{patient.firstName}</td>
           </tr>
           <tr>
             <td>Last Name</td>
-            <td>{user.surname}</td>
+            <td>{patient.surname}</td>
           </tr>
           <tr>
             <td>Date Of Birth</td>
-            <td id="patientDOB">{user.dob}</td>
+            <td id="patientDOB">{patient.dob}</td>
           </tr>
           <tr>
             <td>Gender</td>
-            <td>{user.gender}</td>
+            <td>{patient.gender}</td>
           </tr>
           <tr>
             <td>NHS Number</td>
-            <td>{user.NHSNo}</td>
+            <td>{patient.NHSNo}</td>
           </tr>
           <tr>
             <td>PAS ID</td>
-            <td>{user.id}</td>
+            <td>{patient.id}</td>
           </tr>
         </tbody>
       </table>
@@ -57,7 +54,9 @@ export default function ProfilePopUp({ setPopUp, popUp, user }) {
           <tbody>
             <tr>
               <td className="changeLoginLink">Change Username</td>
-              <td className="userLoginInfo">{user.firstname + user.surname}</td>
+              <td className="userLoginInfo">
+                {patient.firstName + patient.surname}
+              </td>
             </tr>
             <tr>
               <td className="changeLoginLink">Change Password</td>

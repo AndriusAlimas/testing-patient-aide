@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CurrentDate from "./CurrentDate/CurrentDate.component";
 import { DashboardCalendarContainer } from "./DashboardCalendar.elements";
@@ -119,7 +119,8 @@ export default function DashboardCalendar({ todayDate }) {
               state={{
                 appointment: todayAppointment,
                 appointments: appointments,
-              }}>
+              }}
+            >
               <TodaysAppointment
                 appointment={todayAppointment}
                 color="#106493"
@@ -139,7 +140,8 @@ export default function DashboardCalendar({ todayDate }) {
                 state={{
                   appointment: firstFutureAppointment,
                   appointments: [...futureAppointments],
-                }}>
+                }}
+              >
                 <FutureAppointment
                   appointment={firstFutureAppointment}
                   color="#106493"
@@ -157,7 +159,8 @@ export default function DashboardCalendar({ todayDate }) {
                 state={{
                   appointment: secondFutureAppointment,
                   appointments: [...futureAppointments],
-                }}>
+                }}
+              >
                 <FutureAppointment
                   appointment={secondFutureAppointment}
                   day={getDayDifference(secondFutureAppointment, todayDate)}

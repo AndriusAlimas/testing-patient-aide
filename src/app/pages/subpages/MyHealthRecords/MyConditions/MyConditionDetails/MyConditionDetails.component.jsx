@@ -2,12 +2,16 @@
 import React from "react";
 
 // Import: Components
-import { GenericPopUp, MHRTable } from "../../../../../components";
+import { GenericPopUp } from "../../../../../components";
 
 // Import: Constants
 import { conditions } from "../../../../../../assets/constants/constants";
 
-export default function MyConditionDetails({ setPopUp, popUp, conditionDetails }) {
+export default function MyConditionDetails({
+  setPopUp,
+  popUp,
+  conditionDetails,
+}) {
   return (
     <GenericPopUp popUp={popUp} setPopUp={setPopUp}>
       <table id="conditionDetails">

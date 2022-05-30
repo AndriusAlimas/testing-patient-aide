@@ -1,15 +1,14 @@
 // Import: Packages
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyProcedures.elements";
-import { ListViewContainer } from "../../../../Styles/ListsView/ListView.elements";
+import { ListViewContainer } from "../../../../styles/ListsView/ListView.elements";
 
 // Import: Components
-import { GenericCard, PageHeader } from "../../../../components";
+import { PageHeader } from "../../../../components";
 import MyProcedureDetails from "./MyProcedureDetails/MyProcedureDetails.component";
 
 // Import: Assets

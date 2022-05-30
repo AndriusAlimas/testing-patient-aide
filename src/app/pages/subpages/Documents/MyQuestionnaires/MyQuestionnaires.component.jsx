@@ -1,5 +1,5 @@
 // Import: Packages
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 // Import: Elements
-import { SectionContainer } from "./MyQuestionnaires.elements";
-import { ListViewContainer } from "../../../../Styles/ListsView/ListView.elements";
+import { SectionContainer, Overlay } from "./MyQuestionnaires.elements";
+import { ListViewContainer } from "../../../../styles/ListsView/ListView.elements";
 
 // Import: Assets
 import rightArrow from "../../../../../assets/img/icons/Left-Chevron.svg";
@@ -18,8 +18,12 @@ import questionnaireIcon from "../../../../../assets/img/icons/Dashboard/dashboa
 // Import: Components
 import { PageHeader } from "../../../../components";
 import { questionnaires } from "../../../../demo-data/dummyQuestionnaires";
+import { SortBy } from "../../../../components";
+import AddQuestionnaire from "./AddQuestionnaire/AddQuestionnaireButton/AddQuestionnaireButton.component";
 
 export default function MyQuestionnaires({ sidebar }) {
+  const [addNewQuestionnaire, setAddNewQuestionnaire] = useState(false);
+
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -32,7 +36,6 @@ export default function MyQuestionnaires({ sidebar }) {
   const encounterQuestionnaires = () => {
     if (location.state?.encounter) {
       const { encounter } = location.state;
-      console.log("!!!",encounter)
       return questionnaires.filter((questionnaire) => {
         return questionnaire.encounter === encounter.encounterID;
       });
@@ -78,10 +81,12 @@ export default function MyQuestionnaires({ sidebar }) {
       exit={pageTransitionsStyle.exit}
       transition={pageTransitionsStyle.transition}
     >
+      {<Overlay addNewQuestionnaire={addNewQuestionnaire}></Overlay>}
       <SectionContainer
         sidebar={sidebar}
         completionStatus={completionStatus}
         data-testid={"myQuestionnaires"}
+        addNewQuestionnaire={addNewQuestionnaire}
       >
         <div className="mobileVersion">
           <PageHeader
@@ -93,6 +98,12 @@ export default function MyQuestionnaires({ sidebar }) {
           <div id="iconBg">
             <img src={questionnaireIcon} id="QuestionnaireIcon" />
           </div>
+          {location.state && (
+            <AddQuestionnaire
+              addNewQuestionnaire={addNewQuestionnaire}
+              setAddNewQuestionnaire={setAddNewQuestionnaire}
+            />
+          )}
           <div id="questionnaireStatus">
             <div
               id="statusPendingContainer"
@@ -106,8 +117,8 @@ export default function MyQuestionnaires({ sidebar }) {
             >
               <h2>Complete</h2>
             </div>
+            <SortBy />
           </div>
-
           {/* questionnaire Cards */}
           <ListViewContainer>
             <ul>

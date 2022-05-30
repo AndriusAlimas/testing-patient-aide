@@ -1,8 +1,8 @@
 // Import: Packages
 import React, { useState } from "react";
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { appointments } from "./app/demo-data/appointments";
+
 import {
   Navigation,
   MissingRoute,
@@ -46,7 +46,8 @@ export default function App() {
   return (
     <Routes>
       <Route
-        element={<PublicRoutesWrapper isAuthenticated={isAuthenticated} />}>
+        element={<PublicRoutesWrapper isAuthenticated={isAuthenticated} />}
+      >
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         {/* this is a normal route but with optional parameters, not supported yet by react-router-dom v6 */}
@@ -62,7 +63,8 @@ export default function App() {
         <Route path="/forgottenpassword" element={<ForgottenPassword />} />
       </Route>
       <Route
-        element={<PrivateRoutesWrapper isAuthenticated={isAuthenticated} />}>
+        element={<PrivateRoutesWrapper isAuthenticated={isAuthenticated} />}
+      >
         <Route
           element={
             <>
@@ -79,7 +81,8 @@ export default function App() {
               />
               <Outlet />
             </>
-          }>
+          }
+        >
           <Route element={<AnimatedRoutes />}>
             <Route
               path="/dashboard"
