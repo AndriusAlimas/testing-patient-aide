@@ -114,9 +114,9 @@ export const caresphereContactInfo = {
 export const LANDING_PAGE_TEXT = {
   WELCOME_TO: "Welcome to",
   DISCLAIMER: [
-    "PatientAide does not provide medical advice of any kind including advice to take (or not to take) medication. OnePatient must not be relied upon to make decisions about a patient’s medical care. A patient should always seek medical advice from an appropriately qualified healthcare professional.",
-    "PatientAide is a tool for a patient and his/her healthcare provider to share information selected by them about the patient’s care. Information from the healthcare provider is a snapshot of information in a patient’s care record with that single provider. Information in OnePatient may not be complete or up to date, does not include information held by a patient’s other healthcare providers and is provided for information only.",
-    "Dedalus, as the suppliers of OnePatient, is not responsible for the information in OnePatient or for the provision of, use of, or reliance upon such information by any person.",
+    "PatientAide does not provide medical advice of any kind including advice to take (or not to take) medication. PatientAide must not be relied upon to make decisions about a patient’s medical care. A patient should always seek medical advice from an appropriately qualified healthcare professional.",
+    "PatientAide is a tool for a patient and his/her healthcare provider to share information selected by them about the patient’s care. Information from the healthcare provider is a snapshot of information in a patient’s care record with that single provider. Information in PatientAide may not be complete or up to date, does not include information held by a patient’s other healthcare providers and is provided for information only.",
+    "Dedalus, as the suppliers of PatientAide, is not responsible for the information in PatientAide or for the provision of, use of, or reliance upon such information by any person.",
   ],
   COPYRIGHT: " 2022 Dedalus. All rights reserved.",
   VERSION_NO: "Version number: 2.1.5",
