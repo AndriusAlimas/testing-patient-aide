@@ -49,9 +49,13 @@ export default function GenericCard({
     label: "Hours:Minutes",
     value: "HH:MM",
   });
-  const rawContent = `BEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Appointment\nTRIGGER:-PT${
-    option.value.split(":")[0]
-  }H${option.value.split(":")[1]}M\nEND:VALARM`;
+  let hours = option.value.split(":")[0];
+  let minutes = option.value.split(":")[1];
+  if (hours === "HH" || minutes === "MM") {
+    hours = "00";
+    minutes = "00";
+  }
+  const rawContent = `BEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Appointment\nTRIGGER:-PT${hours}H${minutes}M\nEND:VALARM`;
   useEffect(() => {
     console.log(option.value.split(":"));
   }, [option]);
