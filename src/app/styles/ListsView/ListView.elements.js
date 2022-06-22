@@ -20,6 +20,7 @@ export const ListViewContainer = styled.section`
     list-style: none;
     position: relative;
     margin-top: 0.5rem;
+    overflow-wrap: break-word;
   }
 
   #cardTextContainer {
@@ -37,7 +38,6 @@ export const ListViewContainer = styled.section`
     font-weight: normal;
     font-size: 1.1rem;
     margin: ${({ questionnaireMenu }) => questionnaireMenu && "0"};
-    max-width: 80%;
 
     span {
       font-size: 1rem;

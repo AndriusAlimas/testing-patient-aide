@@ -22,7 +22,7 @@ export default function CaresphereContactDetails({
           </tr>
           <tr>
             <td>{caresphereContactInfo.firstName}</td>
-            <td>{caresphereContact.firstName}</td>
+            <td>{caresphereContact.firstname}</td>
           </tr>
           <tr>
             <td>{caresphereContactInfo.surname}</td>

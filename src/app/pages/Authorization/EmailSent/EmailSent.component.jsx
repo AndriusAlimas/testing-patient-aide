@@ -21,7 +21,7 @@ function EmailSent() {
   const { userEmail, reset } = useParams();
 
   return (
-    <Container>
+    <Container data-testid={"EmailSent"}>
       <LogoContainer>
         <Logo image={OnePatientLogo} />
       </LogoContainer>

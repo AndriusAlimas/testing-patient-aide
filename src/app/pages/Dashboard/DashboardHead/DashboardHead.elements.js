@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DashboardHeadContainer = styled.div`
   margin-top: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   width: 100%;
   font-weight: 600;
   position: relative;
+  height: fit-content;
 
   h1 {
     max-width: 85%;
@@ -18,6 +19,7 @@ export const DashboardHeadContainer = styled.div`
 
 #notificationMessage{
   width: fit-content;
+  margin-top:0.2rem;
 }
 
   #notificationText {
@@ -26,6 +28,10 @@ export const DashboardHeadContainer = styled.div`
     right: 0.3rem;
     font-weight: 800;
     font-size: 0.9rem;
+  }
+
+  #numOfNotifications{
+    font-size: 1rem;
   }
 
   #accountIcon {
@@ -38,7 +44,7 @@ export const DashboardHeadContainer = styled.div`
     align-items: center;
     position: absolute;
     right: 0.5rem;
-    top: 0.5rem;
+    top: -0.5rem;
     height: 3rem;
     width: 3rem;
     background-color: white;

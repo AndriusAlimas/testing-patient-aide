@@ -1,5 +1,6 @@
 // Import: Packages
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 // Import: Components
 import { GenericPopUp } from "../../../index";
@@ -10,24 +11,16 @@ import { notifications } from "../../../../demo-data/notificationData";
 
 // Component: Notifications
 export default function NotificationsPopUp() {
-  const [displayNotifications, setDisplayNotifications] =
-    useState(notifications);
-
-  function closeNotification(index) {
-    setDisplayNotifications((notification) =>
-      notification.filter((item, i) => i !== index)
-    );
-  }
+  const notifications = useSelector(
+    (state) => state.notifications.notifications
+  );
 
   return (
     <GenericPopUp data-testid={"notifications"} title="Notifications">
       <ul>
-        {displayNotifications.map((notification, index) => (
+        {notifications.map((notification, index) => (
           <div key={index}>
-            <NotificationCard
-              notification={notification}
-              closeNotification={() => closeNotification(index)}
-            />
+            <NotificationCard notification={notification} />
           </div>
         ))}
       </ul>

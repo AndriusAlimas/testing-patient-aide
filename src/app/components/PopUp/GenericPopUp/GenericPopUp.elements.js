@@ -12,18 +12,21 @@ const appear = keyframes`
 }`;
 
 export const GenericPopUpElement = styled.section`
-  box-shadow: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu ? "none" : " 3px -5px 6px #00000040"};
+  box-shadow: ${({ AddQuestionnaireMenu }) =>
+    AddQuestionnaireMenu ? "none" : " 3px -5px 6px #00000040"};
   background-color: #f3f1f7;
   border-radius: 1rem 1rem 0 0;
   padding: 1rem 0;
   position: fixed;
   margin: 0 auto;
   width: 98vw;
-  height: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu === true ? " fit-content" : "98%"}; 
+  height: ${({ AddQuestionnaireMenu }) =>
+    AddQuestionnaireMenu ? " fit-content" : "98%"};
   bottom: 0;
   animation: ${appear} 0.6s;
   overflow: hidden;
-  z-index: ${({AddQuestionnaireMenu}) => AddQuestionnaireMenu ? "30" : "12"}; 
+  z-index: ${({ AddQuestionnaireMenu }) =>
+    AddQuestionnaireMenu ? "30" : "12"};
 
   header {
     h1 {
@@ -47,11 +50,19 @@ export const GenericPopUpElement = styled.section`
     text-align: center;
     margin: 3.5rem 0;
 
-    img {
+    #imgContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 50%;
       background-color: white;
       height: 5rem;
       width: 5rem;
+      margin: 0 auto;
+    }
+
+    img {
+      height: 2rem;
     }
   }
 

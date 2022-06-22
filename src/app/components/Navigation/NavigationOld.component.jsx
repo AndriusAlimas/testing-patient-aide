@@ -54,7 +54,7 @@ export default function Navigation({
   const [windowDimensions, setWindowDimensions] = useState(window.innerWidth);
   const [selectedPage, setSelectedPage] = useState("Home");
 
-  const { scrollYStatus } = useSelector((state) => state.scrollYStatus);
+  const { scrollYStatus } = useSelector((state) => state.uiTriggers);
 
   useEffect(() => {
     const data = window.sessionStorage.getItem("DASHBOARD");
@@ -121,9 +121,6 @@ export default function Navigation({
           </i>
         </div>
         <ul className="nav-list">
-
-
-        
           {/* Mobile menu */}
           <div className="threeIcons">
             <li>
@@ -137,7 +134,7 @@ export default function Navigation({
                       style={{ width: "1.3em", height: "3rem" }}
                     />
                   ) : (
-                    <HomeIcon2  style={{ width: "1.7em", height: "3rem" }}/>
+                    <HomeIcon2 style={{ width: "1.7em", height: "3rem" }} />
                   )}
                   <p
                     style={{

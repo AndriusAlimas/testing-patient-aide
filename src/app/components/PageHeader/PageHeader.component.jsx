@@ -19,25 +19,28 @@ export default function PageHeader({
   title,
   returnRoute,
   sortFunction,
-  notifications,
+  notificationBell,
   profile,
   dashboard,
   encounter,
 }) {
-  const { scrollYStatus } = useSelector((state) => state.scrollYStatus);
+  const notifications = useSelector(
+    (state) => state.notifications.notifications
+  );
+  const { scrollYStatus } = useSelector((state) => state.uiTriggers);
   return (
     <HeaderContainer
       scrollYStatus={scrollYStatus}
       profile={profile}
       dashboard={dashboard}
     >
-      {notifications && <NotificationsBell />}
+      {notificationBell && notifications.length > 0 &&<NotificationsBell />}
       <h1 id="headerTitle">{title}</h1>
       {profile && <ProfileIcon />}
       {returnRoute && (
         <Link to={`${returnRoute}`} state={{ encounter }}>
           <div id="buttonContainer">
-            <img id="backArrow" src={BackArrow} />
+            <img id="backArrow" src={BackArrow} alt="Back Arrow" />
             <p className="backButton">Back</p>
           </div>
         </Link>

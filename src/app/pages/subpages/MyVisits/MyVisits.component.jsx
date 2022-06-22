@@ -16,16 +16,15 @@ import rightArrow from "../../../../assets/img/icons/Left-Chevron.svg";
 // Import: Components
 import PageHeader from "../../../components/PageHeader/PageHeader.component";
 
-// Import: DummyData
-import { encounters } from "../../../demo-data/dummyVisits";
-
-// Component: Medication
 export default function MyVisits({ sidebar }) {
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const encounters = useSelector((state) => {
+    return state.encounters.allEncounters;
+  });
 
-  const visitsDateSorted = encounters.sort((a, b) => {
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
+
+  const encountersCopy = encounters ? [...encounters] : [];
+  const visitsDateSorted = encountersCopy.sort((a, b) => {
     return new Date(b.encounterStartDate) - new Date(a.encounterStartDate);
   });
 
@@ -40,7 +39,11 @@ export default function MyVisits({ sidebar }) {
         <div className="mobileVersion">
           <PageHeader title={"My Visits"} returnRoute={"/dashboard"} />
           <div id="iconBg">
-            <img src={visitHistoryIcon} id="visitHistoryIcon" />
+            <img
+              src={visitHistoryIcon}
+              id="visitHistoryIcon"
+              alt="Visit History"
+            />
           </div>
           <ListViewContainer>
             <ul>
@@ -56,12 +59,13 @@ export default function MyVisits({ sidebar }) {
                     {/* <Link key={index} to="/my-visit-details"> */}
                     <li id="cardContainer">
                       <div id="cardTextContainer">
-                        <h2 id="cardHeader">{encounter.class}</h2>
+                        <h2 id="cardHeader">{encounter.serviceType}</h2>
                         <div className="cardDetailText">
                           <p>
-                            {" "}
+                            <strong>{encounter.class}</strong>
+                            <br></br>
                             {moment(encounter.encounterStartDate).format(
-                              "DD/MM/YYYY MM:HHa"
+                              "DD/MM/YYYY MM:HH"
                             )}
                           </p>
                         </div>

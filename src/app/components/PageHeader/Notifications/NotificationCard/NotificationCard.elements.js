@@ -22,7 +22,7 @@ export const NotificationStyles = styled.section`
 
   .notificationIcon {
     height: 1.5rem;
-    margin-left: 0.2rem;
+    margin-left: 1rem;
     top: 1rem;
     width: 1.5rem;
   }

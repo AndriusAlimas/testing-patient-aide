@@ -5,7 +5,7 @@ import { deviceMaxWidth } from "../../../definitions/breakPoints";
 // Element: SectionContainer
 export const SectionContainer = styled.section`
   width: 100%;
-  height: calc(75vh - 100px);
+  height: 36rem;
   position: relative;
   padding: 1rem;
   display: flex;

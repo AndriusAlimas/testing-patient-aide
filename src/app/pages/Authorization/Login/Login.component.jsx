@@ -2,13 +2,14 @@ import React from "react";
 import { Formik, Form } from "formik";
 import { TextInput } from "./FormikLib";
 import * as Yup from "yup";
-import { useParams } from "react-router-dom";
 import { Text } from "../../../components/index";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AUTH } from "../../../../assets/constants/constants";
 import {
   checkUserCredentials,
-  getUserDetails,
+  getClinicianDetails,
+  getPatientDetails,
   updateIsAuthenticated,
 } from "../../../../redux/slices/UserSlice";
 import { setCheckCredentialsErrorMessage } from "../utils";
@@ -20,27 +21,68 @@ import {
   StyledButton,
   TextLink,
 } from "./Login.elements";
+import {
+  checkAppointments,
+  checkQuestionnaires,
+} from "../../../../redux/slices/utils";
+import {
+  addNewAppointments,
+  addNewQuestionnaires,
+} from "../../../../redux/slices/NotificationsSlice";
+
 import { colors } from "../../../themes/lightTheme";
 
 import { ReactComponent as PatientAideLogo } from "../../../../assets/img/logo/Patient-AIDE.svg";
 import { FiUser, FiLock } from "react-icons/fi";
 import { RotatingLines } from "react-loader-spinner";
+import { sessionService } from "redux-react-session";
+import { getAllAppointments } from "../../../../redux/slices/AppointmentsSlice";
+import { getQuestionnaires } from "../../../../redux/slices/QuestionnaireSlice";
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSignIn = (values, setSubmitting, setFieldError) => {
-    dispatch(checkUserCredentials({ values })).then((data) => {
-      if (data.payload.status === "Failed") {
-        setCheckCredentialsErrorMessage(data, setSubmitting, setFieldError);
+    dispatch(checkUserCredentials({ values })).then((userData) => {
+      if (userData.payload.status === "Failed") {
+        setCheckCredentialsErrorMessage(userData, setSubmitting, setFieldError);
       } else {
-        dispatch(getUserDetails())
+        dispatch(getClinicianDetails())
           .then((data) => {
+            const token =
+              data.payload.ControlActEvent.Subject.Value[0].SecurityToken;
+            // const userData =
+            //   data.payload.ControlActEvent.Subject.Value[0].UserRoleProfile[0];
+            // sessionService.saveSession(token).then(() => {
+            //   sessionService.saveUser(userData).then(() => navigate("/"));
+            // });
             dispatch(
               updateIsAuthenticated(
                 !!data.payload.ControlActEvent.Subject.Value[0].SecurityToken
               )
             );
+            dispatch(getPatientDetails()).then((patientDetails) => {
+              dispatch(getAllAppointments(patientDetails.payload.id))
+                .then((allAppointments) => {
+                  const newAppointments = checkAppointments(
+                    allAppointments.payload,
+                    userData.payload.data[0].appointmentIds
+                  );
+                  dispatch(addNewAppointments(newAppointments));
+                })
+                .then(() => {
+                  dispatch(getQuestionnaires(patientDetails.payload.id)).then(
+                    (questionnaires) => {
+                      const newQuestionnaires = checkQuestionnaires(
+                        questionnaires.payload,
+                        userData.payload.data[0].questionnaireIds
+                      );
+                      dispatch(addNewQuestionnaires(newQuestionnaires));
+                    }
+                  );
+                });
+            });
           })
           .then(setSubmitting(false));
       }

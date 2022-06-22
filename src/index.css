@@ -24,7 +24,6 @@
 #root > div:nth-child(2) > section:nth-child(2) {
   height: fit-content;
   padding-bottom: 5rem;
-
 }
 /* SF: Black */
 @font-face {
@@ -83,7 +82,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-img{
+img {
   padding: 0;
 }
 html {

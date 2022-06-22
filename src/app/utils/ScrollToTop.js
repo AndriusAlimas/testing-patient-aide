@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setScrollYStatus } from "../../redux/slices/ScrollYSlice";
+import { setScrollYStatus } from "../../redux/slices/UITriggers";
 
 const ScrollToTop = (props) => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ScrollToTop = (props) => {
         dispatch(setScrollYStatus("near Top"));
       } else if (
         window.innerHeight + window.scrollY >=
-        document.body.offsetHeight - 1
+        document.body.scrollHeight - 1
       ) {
         dispatch(setScrollYStatus("bottom"));
       } else {

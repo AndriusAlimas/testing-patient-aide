@@ -12,9 +12,7 @@ import { SectionContainer, CardContainer } from "./MyHealth.elements";
 
 export default function MyHealth() {
   const [patientModal, setPatientModal] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
   return (
     <motion.div
       initial={pageTransitionsStyle.initial}
@@ -24,12 +22,12 @@ export default function MyHealth() {
     >
       <SectionContainer data-testid="myHealth">
         <div className="mobileVersion">
-          {patientModal ? (
+          {patientModal && (
             <ProfilePopUp
               setPatientModal={setPatientModal}
               patientModal={patientModal}
             />
-          ) : null}
+          )}
           <PageHeader title="My Health" />
           <div className="setOfCards">
             <CardContainer>

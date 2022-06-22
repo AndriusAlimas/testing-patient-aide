@@ -1,19 +1,22 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { DashboardHeadContainer } from "./DashboardHead.elements";
 
 import accountIcon from "../../../../assets/img/icons/account.svg";
 
-// Import: Dummy Data
 import { patient } from "../../../demo-data/dummyPatientData";
-import { notifications } from "../../../demo-data/notificationData";
 import { NotificationsBell } from "../../../components";
-import { toggleNotificationsStatus } from "../../../../redux/slices/PopUpStatusSlice";
-import { toggleProfileStatus } from "../../../../redux/slices/PopUpStatusSlice";
+import {
+  toggleNotificationsStatus,
+  toggleProfileStatus,
+} from "../../../../redux/slices/UITriggers";
 
 export default function DashboardHead() {
   const dispatch = useDispatch();
+  const notifications = useSelector(
+    (state) => state.notifications.notifications
+  );
 
   return (
     <DashboardHeadContainer>
@@ -29,10 +32,12 @@ export default function DashboardHead() {
           id="notificationMessage"
           onClick={() => dispatch(toggleNotificationsStatus(true))}
         >
-          <div id="notificationText">
-            <NotificationsBell dashboard={true} />
-            You Have Notifications!
-          </div>
+          {notifications.length > 0 && (
+            <div id="notificationText">
+              <NotificationsBell dashboard={true} />
+              You Have <span id="numOfNotifications">{notifications.length}</span> Notifications!
+            </div>
+          )}
         </div>
       )}
     </DashboardHeadContainer>

@@ -1,17 +1,21 @@
 // Import: Packages
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 // Import: App
 import App from "./App";
 
 // Test: Checks that App renders
-it("Does the App component render?", () => {
+test("Does the App component render?", () => {
   const { queryByTestId } = render(
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   );
-  const component = queryByTestId("app");
-  expect(component).toBeTruthy();
+  const page = queryByTestId("application");
+  expect(page).toBeTruthy();
 });

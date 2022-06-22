@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { Text } from "../../../components/index";
 import { useDispatch } from "react-redux";
 import { AUTH } from "../../../../assets/constants/constants";
-import { signupUser2 } from "../../../../redux/slices/UserSlice";
+import { signupUser } from "../../../../redux/slices/UserSlice";
 import { isValid } from "../utils";
 
 import {
@@ -71,7 +71,7 @@ export default function SignUp() {
           })}
           onSubmit={(values, { setSubmitting, setFieldError }) => {
             dispatch(
-              signupUser2({ credentials: values, setFieldError, setSubmitting })
+              signupUser({ credentials: values, setFieldError, setSubmitting })
             );
             // signUpUser(values, navigate, setFieldError, setSubmitting);
           }}

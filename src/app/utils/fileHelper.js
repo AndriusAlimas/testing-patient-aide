@@ -2,7 +2,6 @@ import { convertDate } from "./dateHelper";
 const createFile = (data) => {
   let icsFile = null;
   var link = document.querySelector("#downloadLink");
-  // console.log(link);
   let eventDate = {
     start: data.start,
     end: data.end,
@@ -11,7 +10,6 @@ const createFile = (data) => {
     description: data.sessionName,
     dr_name: data.practitionerName,
   };
-  console.log(eventDate);
   link.href = makeICSFile(
     eventDate,
     eventDate.summary,
@@ -21,7 +19,6 @@ const createFile = (data) => {
 };
 
 const makeICSFile = (date, summary, description, icsFile) => {
-  console.log(convertDate(date.start, "-", false, 0));
   let test =
     "BEGIN:VCALENDAR\n" +
     "CALSCALE:GREGORIAN\n" +
@@ -44,7 +41,6 @@ const makeICSFile = (date, summary, description, icsFile) => {
     "\n" +
     "END:VEVENT\n" +
     "END:VCALENDAR";
-  console.log(test);
   let data = new File([test], { type: "text/plain" });
 
   // If we are replacing a previously generated file we need to

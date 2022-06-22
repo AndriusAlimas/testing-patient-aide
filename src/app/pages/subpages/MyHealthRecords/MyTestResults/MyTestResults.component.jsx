@@ -21,9 +21,7 @@ import MyTestResultsDetails from "./MyTestResultsDetails/MyTestResultsDetails.co
 // Component: MyConditions
 export default function MyTestResults({ sidebar }) {
   const [popUp, setPopUp] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
 
   const testResultDetailsRef = useRef();
 
@@ -86,16 +84,20 @@ export default function MyTestResults({ sidebar }) {
         </div> */}
 
         <div className="mobileVersion">
-          {popUp ? (
+          {popUp && (
             <MyTestResultsDetails
               popUp={popUp}
               setPopUp={setPopUp}
               testResultDetails={testResultDetailsRef.current}
             />
-          ) : null}
+          )}
           <PageHeader title={"Test Results"} returnRoute={"/dashboard"} />
           <div id="iconBg">
-            <img id="proceduresIcon" src={testResultsIcon} />
+            <img
+              id="proceduresIcon"
+              src={testResultsIcon}
+              alt="Procedures Icon"
+            />
           </div>
 
           <ListViewContainer>

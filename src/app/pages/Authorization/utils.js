@@ -1,5 +1,6 @@
 import axios from "axios";
 const apiLogin = process.env.REACT_APP_LOGIN_API;
+const localUrl = "http://localhost:8080";
 const currentUrl = apiLogin;
 
 export const setCheckCredentialsErrorMessage = (
@@ -20,8 +21,6 @@ export const setCheckCredentialsErrorMessage = (
 };
 
 export async function isValid(keyName, valueToCheck) {
-  console.log(valueToCheck);
-
   if (valueToCheck === undefined) return null;
 
   const response = await axios
@@ -30,7 +29,6 @@ export async function isValid(keyName, valueToCheck) {
       headers: { "Content-Type": "text/html" },
     })
     .then((response) => {
-      console.log(response);
       const { message } = response.data;
       if (message.includes("taken")) {
         return false;

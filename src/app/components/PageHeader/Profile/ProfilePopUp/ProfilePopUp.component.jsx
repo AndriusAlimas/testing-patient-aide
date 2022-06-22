@@ -1,7 +1,9 @@
 // Import: Packages
 import React from "react";
 
-// import { logoutUser } from "../../../../redux/userActions";
+import { logoutUser } from "../../../../../redux/userActions";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Import: Components
 import { GenericPopUp } from "../../..";
@@ -10,7 +12,10 @@ import { GenericPopUp } from "../../..";
 import { patient } from "../../../../demo-data/dummyPatientData";
 
 // Component: ProfilePopUp
-export default function ProfilePopUp({ setPopUp, popUp }) {
+export default function ProfilePopUp({ setPopUp, popUp, user }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <GenericPopUp
       popUp={popUp}
@@ -23,27 +28,27 @@ export default function ProfilePopUp({ setPopUp, popUp }) {
         <tbody>
           <tr>
             <td>First Name</td>
-            <td>{patient.firstName}</td>
+            <td>{user.firstname}</td>
           </tr>
           <tr>
             <td>Last Name</td>
-            <td>{patient.surname}</td>
+            <td>{user.surname}</td>
           </tr>
           <tr>
             <td>Date Of Birth</td>
-            <td id="patientDOB">{patient.dob}</td>
+            <td id="patientDOB">{user.dob}</td>
           </tr>
           <tr>
             <td>Gender</td>
-            <td>{patient.gender}</td>
+            <td>{user.gender}</td>
           </tr>
           <tr>
             <td>NHS Number</td>
-            <td>{patient.NHSNo}</td>
+            <td>{user.NHSNo}</td>
           </tr>
           <tr>
             <td>PAS ID</td>
-            <td>{patient.id}</td>
+            <td>{user.id}</td>
           </tr>
         </tbody>
       </table>
@@ -54,9 +59,7 @@ export default function ProfilePopUp({ setPopUp, popUp }) {
           <tbody>
             <tr>
               <td className="changeLoginLink">Change Username</td>
-              <td className="userLoginInfo">
-                {patient.firstName + patient.surname}
-              </td>
+              <td className="userLoginInfo">{user.firstname + user.surname}</td>
             </tr>
             <tr>
               <td className="changeLoginLink">Change Password</td>
@@ -66,7 +69,7 @@ export default function ProfilePopUp({ setPopUp, popUp }) {
         </table>
       </div>
       <div id="logout">
-        <table>
+        <table onClick={logoutUser(navigate, dispatch)}>
           <tbody>
             <tr>
               <td className="logout">Logout</td>

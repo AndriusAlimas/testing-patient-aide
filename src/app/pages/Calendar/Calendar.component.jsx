@@ -53,16 +53,16 @@ export default function Calendar({ sidebar }) {
     setAppointment(e);
   };
 
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
 
   return (
     <motion.div
+      data-testid={"calendar"}
       initial={pageTransitionsStyle.initial}
       animate={pageTransitionsStyle.animate}
       exit={pageTransitionsStyle.exit}
-      transition={pageTransitionsStyle.transition}>
+      transition={pageTransitionsStyle.transition}
+    >
       <SectionContainer sidebar={sidebar} className="Calender">
         {/* Top Calendar  */}
         <Kalend

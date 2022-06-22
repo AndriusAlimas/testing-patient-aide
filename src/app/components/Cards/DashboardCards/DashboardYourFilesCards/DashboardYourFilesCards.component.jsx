@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { DashboardYourFilesCardsContainer } from "./DashboardYourFilesCards.elements";
+import { useDispatch } from "react-redux";
+import { getAllDocuments } from "../../../../../redux/slices/DocumentsSlice";
+import { getQuestionnaires } from "../../../../../redux/slices/QuestionnaireSlice";
 
 export default function DashboardYourFilesCards({
   title,
@@ -10,8 +13,18 @@ export default function DashboardYourFilesCards({
   bgColor2,
   route,
 }) {
+  const dispatch = useDispatch();
+
+  const handleOnClick = () => {
+    return title === "Documents" ? dispatch(getAllDocuments()) : null;
+  };
+
   return (
-    <DashboardYourFilesCardsContainer bgColor1={bgColor1} bgColor2={bgColor2}>
+    <DashboardYourFilesCardsContainer
+      bgColor1={bgColor1}
+      bgColor2={bgColor2}
+      onClick={handleOnClick}
+    >
       <Link to={route}>
         <div id="cardText">
           <h2 id="title">{title}</h2>

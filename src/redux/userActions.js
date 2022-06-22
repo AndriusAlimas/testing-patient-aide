@@ -1,5 +1,7 @@
 import axios from "axios";
 import { sessionService } from "redux-react-session";
+import { updateIsAuthenticated } from "../redux/slices/UserSlice";
+import { toggleProfileStatus } from "./slices/UITriggers";
 
 // the remote endpoint and local
 const apiLogin = process.env.REACT_APP_LOGIN_API;
@@ -53,11 +55,13 @@ export const signUpUser = (
   };
 };
 
-export const logoutUser = (navigate) => {
+export const logoutUser = (navigate, dispatch) => {
   return () => {
-    sessionService.deleteSession();
-    sessionService.deleteUser();
-    navigate("/landing");
+    // sessionService.deleteSession();
+    // sessionService.deleteUser();
+    dispatch(updateIsAuthenticated(false));
+    dispatch(toggleProfileStatus(false));
+    navigate("/");
   };
 };
 

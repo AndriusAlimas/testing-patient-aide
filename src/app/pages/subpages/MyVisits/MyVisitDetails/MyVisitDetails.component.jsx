@@ -31,7 +31,7 @@ export default function MyVisitDetails() {
         <div id="header">
           <h2 id="visitTitle">{encounter.class}</h2>
           <p>
-            {moment(encounter.encounterStartDate).format("MM/DD/YYYY MM:HHa")}
+            {moment(encounter.encounterStartDate).format("MM/DD/YYYY MM:HH")}
           </p>
         </div>
         <MyVisitDetailsCard
@@ -47,7 +47,7 @@ export default function MyVisitDetails() {
           title="Medications"
           icon={medicationIcon}
           description="View any medication prescribed during this visit"
-          linkTo="/Current-medications"
+          linkTo="/medication"
           encounter={encounter}
           bgColor1="#5e60ce"
           bgColor2="#6930c3"

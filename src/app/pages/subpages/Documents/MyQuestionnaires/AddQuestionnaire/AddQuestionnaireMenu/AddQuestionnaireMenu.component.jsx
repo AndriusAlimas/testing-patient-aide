@@ -13,30 +13,30 @@ export default function AddQuestionnaireMenu({ setPopUp, popUp }) {
     >
       <div id="cardHeader">
         <div id="cardHeaderIcon">
-          <img src={questionnaireIcon} />
+          <img src={questionnaireIcon} alt="Questionnaire" />
         </div>
         <div id="cardHeaderText">
           <h1>Start a new Questionnaire</h1>
           <p>Please select from the list below</p>
         </div>
         <div id="exitIcon" onClick={() => setPopUp(!popUp)}>
-          <img  src={exitIcon} />
+          <img src={exitIcon} alt="Exit" />
         </div>
       </div>
       <div id="questionnaireListContainer">
-      <ListViewContainer questionnaireMenu={true}>
-        <ul>
-          <li id="cardContainer">
-            <div></div>
-            <h2 className="cardDetailText">Sleep Apnea Questionnaire</h2>
-            <div className="arrowIcon">
-              <p>Start</p>
-            </div>
-          </li>
-          {/* <li id="cardContainer">Questionnaire #2</li>
+        <ListViewContainer questionnaireMenu={true}>
+          <ul>
+            <li id="cardContainer">
+              <div></div>
+              <h2 className="cardDetailText">Sleep Apnea Questionnaire</h2>
+              <div className="arrowIcon">
+                <p>Start</p>
+              </div>
+            </li>
+            {/* <li id="cardContainer">Questionnaire #2</li>
           <li id="cardContainer">Questionnaire #3</li> */}
-        </ul>
-      </ListViewContainer>
+          </ul>
+        </ListViewContainer>
       </div>
     </AddQuestionnaireMenuContainer>
   );

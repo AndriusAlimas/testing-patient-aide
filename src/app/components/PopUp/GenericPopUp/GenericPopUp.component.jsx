@@ -10,34 +10,29 @@ import allergyIcon from "../../../../assets/img/icons/sneeze.svg";
 import { useDispatch, useSelector } from "react-redux";
 
 // Import: redux
-import { toggleNotificationsStatus } from "../../../../redux/slices/PopUpStatusSlice";
-import { toggleProfileStatus } from "../../../../redux/slices/PopUpStatusSlice";
+import {
+  toggleNotificationsStatus,
+  toggleProfileStatus,
+} from "../../../../redux/slices/UITriggers";
 
 export default function GenericPopUp({
-  bannerImgSrc,
   children,
   setPopUp,
   popUp,
   title,
-  addBannerImg,
   addProfileImg,
-  addAllergyIcon,
-  toggleNotificationPage,
-  setToggleNotificationPage,
   AddQuestionnaireMenu,
 }) {
   const dispatch = useDispatch();
-  const { notificationsStatus } = useSelector((state) => state.popUpStatus);
-  const { profileStatus } = useSelector((state) => state.popUpStatus);
+  const { notificationsStatus } = useSelector((state) => state.uiTriggers);
+  const { profileStatus } = useSelector((state) => state.uiTriggers);
 
   return (
     <GenericPopUpElement
       popUp={popUp}
       addProfileImg={addProfileImg}
-      addAllergyIcon={addAllergyIcon}
-      NotificationPage={toggleNotificationPage}
-      data-testid={"genericPopUp"}
       AddQuestionnaireMenu={AddQuestionnaireMenu}
+      data-testid={"genericPopUp"}
     >
       <header>
         <h1>{title}</h1>
@@ -57,20 +52,11 @@ export default function GenericPopUp({
       </header>
       {addProfileImg && (
         <div id="profileImg">
-          <img src={profileImg} alt="Profile" />
+          <div id="imgContainer">
+            <img src={profileImg} alt="Profile" />
+          </div>
         </div>
       )}
-      {addBannerImg && (
-        <div id="bannerImg">
-          <img src={bannerImgSrc} />
-        </div>
-      )}
-      {addAllergyIcon && (
-        <div id="profileImg">
-          <img src={allergyIcon} />
-        </div>
-      )}
-
       {<section id="container">{children}</section>}
     </GenericPopUpElement>
   );

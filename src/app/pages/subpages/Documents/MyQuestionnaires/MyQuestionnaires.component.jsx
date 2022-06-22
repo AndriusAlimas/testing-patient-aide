@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import { updateCompletionStatus } from "../../../../../redux/slices/QuestionnaireSortSlice";
+import { updateCompletionStatus } from "../../../../../redux/slices/QuestionnaireSlice";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
@@ -17,7 +17,6 @@ import questionnaireIcon from "../../../../../assets/img/icons/Dashboard/dashboa
 
 // Import: Components
 import { PageHeader } from "../../../../components";
-import { questionnaires } from "../../../../demo-data/dummyQuestionnaires";
 import { SortBy } from "../../../../components";
 import AddQuestionnaire from "./AddQuestionnaire/AddQuestionnaireButton/AddQuestionnaireButton.component";
 
@@ -27,20 +26,22 @@ export default function MyQuestionnaires({ sidebar }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const { sortDateStatus } = useSelector((state) => state.questionnaireSort);
-  const { completionStatus } = useSelector((state) => state.questionnaireSort);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
+  const questionnairesList = useSelector(
+    (state) => state.questionnaire.questionnairesList
   );
+
+  const { sortDateStatus } = useSelector((state) => state.questionnaire);
+  const { completionStatus } = useSelector((state) => state.questionnaire);
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
 
   const encounterQuestionnaires = () => {
     if (location.state?.encounter) {
       const { encounter } = location.state;
-      return questionnaires.filter((questionnaire) => {
+      return questionnairesList.filter((questionnaire) => {
         return questionnaire.encounter === encounter.encounterID;
       });
     } else {
-      return questionnaires;
+      return questionnairesList;
     }
   };
 
@@ -96,7 +97,11 @@ export default function MyQuestionnaires({ sidebar }) {
             sortFunction="true"
           />
           <div id="iconBg">
-            <img src={questionnaireIcon} id="QuestionnaireIcon" />
+            <img
+              src={questionnaireIcon}
+              id="QuestionnaireIcon"
+              alt="Questionnaire Icon"
+            />
           </div>
           {location.state && (
             <AddQuestionnaire
@@ -147,7 +152,7 @@ export default function MyQuestionnaires({ sidebar }) {
                           <span>
                             {moment(
                               questionnaire.alertStatus[2].valueDateTime
-                            ).format("DD/MM/YYYY MM:HHa")}
+                            ).format("DD/MM/YYYY MM:HH")}
                           </span>
                         </h3>
                       </div>

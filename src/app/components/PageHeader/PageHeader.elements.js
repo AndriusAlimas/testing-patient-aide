@@ -10,10 +10,10 @@ export const HeaderContainer = styled.div`
   border-bottom: ${({ scrollYStatus }) =>
     (scrollYStatus === "scrolling" || scrollYStatus === "bottom") &&
     "1px solid #D3D1D7"};
-  background-color: ${({ scrollYStatus }) =>
+  background: ${({ scrollYStatus }) =>
     scrollYStatus === "near Top" || scrollYStatus === "top"
       ? "var(--background-color)"
-      : "rgba(255, 255, 255, 0.8)"};
+      : "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(247,241,242,1) 75%);"};
   backdrop-filter: ${({ scrollYStatus }) =>
     (scrollYStatus === "scrolling" || scrollYStatus === "bottom") &&
     "blur(20px)"};

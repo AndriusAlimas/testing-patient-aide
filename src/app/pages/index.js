@@ -19,7 +19,7 @@ export { default as HealthTracker } from "./HealthTracker/HealthTracker.componen
 export { default as MyDetails } from "./subpages/MyHealthRecords/MyDetails/MyDetails.component";
 export { default as MyQuestionnaires } from "./subpages/Documents/MyQuestionnaires/MyQuestionnaires.component";
 export { default as Documents } from "./subpages/Documents/Documents.component";
-export { default as CurrentMedications } from "./subpages/CurrentMedications/CurrentMedications.component";
+export { default as Medications } from "./subpages/Medications/Medications.component";
 // export { default as Notifications } from "./Dashboard/Notifications/Notifications.component";
 export { default as NotificationsPopUp } from "../components/PageHeader/Notifications/NotificationsPopUp/Notifications.component";
 export { default as VisitHistoryDashboardCard } from "./Dashboard/VisitHistory/VisitHistoryDashboardCard.component";

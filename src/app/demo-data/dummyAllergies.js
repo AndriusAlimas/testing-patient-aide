@@ -13,6 +13,20 @@ export const allergies = [
     InformationSource: "Father/Mother",
     VerificationStatus: "Confirmed",
   },
+  //   id(pin):"700000000028"
+  // clinicalStatus(pin):"active"
+  // verificationStatus(pin):"confirmed"
+  // type(pin):"allergy"
+  // category(pin):"food"
+  // allergyCode(pin):"762952008"
+  // allergyName(pin):"Peanuts"
+  // assertedDate(pin):"2021-03-29T15:12:00Z"
+  // onSetDate(pin):"29-Mar-2021"
+  // recordedByID(pin):"600000257014"
+  // reactionCode(pin):"24484000"
+  // reactionDisplay(pin):"Severe"
+  // manifestationCode(pin):"241929008"
+  // manifestationDisplay(pin):"Acute allergic reaction"
   {
     Allergen: "Peanuts",
     Severity: "Severe",

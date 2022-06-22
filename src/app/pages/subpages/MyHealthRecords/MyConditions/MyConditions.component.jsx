@@ -1,7 +1,7 @@
 // Import: Packages
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyConditions.elements";
@@ -14,17 +14,25 @@ import MyConditionDetails from "./MyConditionDetails/MyConditionDetails.componen
 // Import: Assets
 import conditionsIcon from "../../../../../assets/img/icons/dashboardConditionsIcon.svg";
 import rightArrow from "../../../../../assets/img/icons/Left-Chevron.svg";
-
-// Import: dummyData
-import { conditions } from "../../../../demo-data/dummyConditions";
+import { getConditionDetail } from "../../../../../redux/slices/ConditionsSlice";
+import { getPractitionerDetails } from "../../../../../redux/slices/PractitionerSlice";
 
 // Component: MyConditions
 export default function MyConditions({ sidebar }) {
+  const dispatch = useDispatch();
   const [popUp, setPopUp] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
+  const conditionsList = useSelector(
+    (state) => state.conditions.conditions.proceduresList
   );
-  const conditionDetails = useRef("");
+
+  const handleOnClick = async () => {
+    await dispatch(getConditionDetail())
+      .then((practitionerDetails) =>
+        dispatch(getPractitionerDetails(practitionerDetails.payload.createdBy))
+      )
+      .then(setPopUp(!popUp));
+  };
 
   return (
     <motion.div
@@ -87,49 +95,37 @@ export default function MyConditions({ sidebar }) {
       </div> */}
 
         <div className="mobileVersion">
-          {popUp ? (
-            <MyConditionDetails
-              popUp={popUp}
-              setPopUp={setPopUp}
-              conditionDetails={conditionDetails.current}
-            />
-          ) : null}
+          {popUp && <MyConditionDetails popUp={popUp} setPopUp={setPopUp} />}
           <PageHeader title="Conditions" returnRoute={"/dashboard"} />
           <div id="iconBg">
-            <img id="conditionIcon" src={conditionsIcon} />
+            <img id="conditionIcon" src={conditionsIcon} alt="Condition" />
           </div>
           <ListViewContainer>
             <ul>
-              {conditions.map((condition, index) => (
-                <li
-                  id="cardContainer"
-                  key={index}
-                  onClick={() => {
-                    setPopUp(!popUp);
-                    conditionDetails.current = condition;
-                  }}
-                >
-                  <div id="cardTextContainer">
-                    <h2 id="cardHeader">
-                      {condition.ConditionName
-                        ? condition.ConditionName
-                        : "No Current Conditions"}
-                    </h2>
-                    <div className="allergySeverityContainer">
-                      <h3 className=" cardDetailText">
-                        Status:{" "}
-                        <span>
-                          {condition.status ? condition.status : "N/A"}
-                        </span>
-                      </h3>
-                      <div className="arrowIcon">
-                        <p>Details</p>
-                        <img src={rightArrow} alt="right arrow" />
+              {conditionsList.length > 0 &&
+                conditionsList.map((condition, index) => (
+                  <li id="cardContainer" key={index} onClick={handleOnClick}>
+                    <div id="cardTextContainer">
+                      <h2 id="cardHeader">
+                        {condition.problemName
+                          ? condition.problemName
+                          : "No Current Conditions"}
+                      </h2>
+                      <div className="allergySeverityContainer">
+                        <h3 className=" cardDetailText">
+                          Status:{" "}
+                          <span>
+                            {condition.status ? condition.status : "N/A"}
+                          </span>
+                        </h3>
+                        <div className="arrowIcon">
+                          <p>Details</p>
+                          <img src={rightArrow} alt="right arrow" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))}
             </ul>
           </ListViewContainer>
         </div>

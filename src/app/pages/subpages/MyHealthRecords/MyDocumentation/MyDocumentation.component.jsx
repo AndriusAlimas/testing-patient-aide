@@ -1,7 +1,7 @@
 // Import: Packages
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyDocumentation.elements";
@@ -17,14 +17,18 @@ import rightArrow from "../../../../../assets/img/icons/Left-Chevron.svg";
 // Import: Components
 import { PageHeader } from "../../../../components";
 import ViewDocument from "./ViewDocument/viewDocument.component";
+import { getBinaryObject } from "../../../../../redux/slices/DocumentsSlice";
+import { getPractitionerDetails } from "../../../../../redux/slices/PractitionerSlice";
 
-// Component: MyConditions
+// Component: MyDocuments
 export default function MyDocumentation({ sidebar }) {
+  const dispatch = useDispatch();
   const [popUp, setPopUp] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
+  const getAllDocuments = useSelector((state) => state.documents.documentsList);
+  const practitionerName = useSelector(
+    (state) => state.practitioner.practitionerDetails.name
   );
-  const toViewDocument = useRef("");
 
   return (
     <motion.div
@@ -115,43 +119,44 @@ export default function MyDocumentation({ sidebar }) {
         </div> */}
 
         <div className="mobileVersion">
-          {popUp && (
-            <ViewDocument
-              setPopUp={setPopUp}
-              popUp={popUp}
-              document={toViewDocument.current}
-            />
-          )}
+          {popUp && <ViewDocument setPopUp={setPopUp} popUp={popUp} />}
           <PageHeader title="Documents" returnRoute="/" />
           <div id="iconBg">
-            <img src={documentsIcon} id="DocumentIcon" />
+            <img src={documentsIcon} id="DocumentIcon" alt="Document" />
           </div>
 
           <ListViewContainer>
             <ul>
-              {documents.map((document, index) => (
-                <li
-                  id="cardContainer"
-                  key={index}
-                  onClick={() => {
-                    setPopUp(!popUp);
-                    toViewDocument.current = document.file;
-                  }}
-                >
-                  <div id="cardTextContainer">
-                    <h2 id="cardHeader">
-                      {document.name ? document.name : "No Known Allergies"}
-                    </h2>
-                    <h3 className="cardDetailText">
-                      Type: <span>{document.type}</span>
-                    </h3>
-                  </div>
-                  <div className="arrowIcon">
-                    <p>Details</p>
-                    <img src={rightArrow} alt="right arrow" />
-                  </div>
-                </li>
-              ))}
+              {getAllDocuments.documents.length > 0 &&
+                getAllDocuments.documents.map(
+                  (document, index) => (
+                    dispatch(getPractitionerDetails(document.practitionerID)),
+                    (
+                      <li
+                        id="cardContainer"
+                        key={index}
+                        onClick={() => {
+                          setPopUp(!popUp);
+                          dispatch(getBinaryObject());
+                        }}
+                      >
+                        <div id="cardTextContainer">
+                          <h2 id="cardHeader">{document.description}</h2>
+                          <h3 className="cardDetailText">
+                            Type: <span>{document.friendlyName}</span>
+                          </h3>
+                          <h3 className="cardDetailText">
+                            Practitioner:{practitionerName}{" "}
+                          </h3>
+                        </div>
+                        <div className="arrowIcon">
+                          <p>Details</p>
+                          <img src={rightArrow} alt="right arrow" />
+                        </div>
+                      </li>
+                    )
+                  )
+                )}
             </ul>
           </ListViewContainer>
         </div>

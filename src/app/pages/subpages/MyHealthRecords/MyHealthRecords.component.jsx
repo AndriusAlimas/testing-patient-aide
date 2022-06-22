@@ -18,7 +18,7 @@ export default function MyHealthRecords() {
   return (
     <>
       <SectionContainer data-testid="myHealthRecords">
-          <PageHeader title={"Health and Wellbeing"} returnRoute={"/my-health"}/>
+        <PageHeader title={"Health and Wellbeing"} returnRoute={"/my-health"} />
         <div className="cardsWrapContainer">
           <Link to="/my-allergies">
             <div className="smallCard">
@@ -53,7 +53,7 @@ export default function MyHealthRecords() {
               />
             </div>
           </Link>
-          <Link to="/Current-medications">
+          <Link to="/Current-medication">
             <div className="smallCard">
               <GenericCard
                 topic="Current Medication"

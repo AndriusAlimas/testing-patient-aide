@@ -12,9 +12,7 @@ import { SectionContainer, CardContainer } from "./Documents.elements";
 import { PageHeader } from "../../../components";
 
 export default function Documents() {
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
   return (
     <motion.div
       initial={pageTransitionsStyle.initial}
@@ -50,11 +48,7 @@ export default function Documents() {
             <CardContainer>
               <Link to="/my-questionnaires">
                 <Card className="card">
-                  <Card.Img
-                    className="cardImg"
-                    variant="top"
-                    src={""}
-                  />
+                  <Card.Img className="cardImg" variant="top" src={""} />
 
                   <Card.Body className="cardBody">
                     <div className="details">

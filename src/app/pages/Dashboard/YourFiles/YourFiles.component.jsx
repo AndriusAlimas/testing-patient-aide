@@ -1,6 +1,7 @@
 import React from "react";
 import DashboardYourFilesCards from "../../../components/Cards/DashboardCards/DashboardYourFilesCards/DashboardYourFilesCards.component";
 import { YourFilesContainer } from "./YourFiles.elements";
+import { GetAllDocuments } from "../../../../redux/slices/DocumentsSlice";
 
 // Import: Assets
 import questionnaireIcon from "../../../../assets/img/icons/Dashboard/dashboardQuestionnaireIcon.svg";
@@ -8,6 +9,7 @@ import documentsIcon from "../../../../assets/img/icons/Dashboard/dashboardDocum
 import testResultsIcon from "../../../../assets/img/icons/Dashboard/dashboardTestResultsIcon.svg";
 
 export default function YourFiles() {
+
   return (
     <YourFilesContainer>
       <h2 id="headerTitle">Your Files</h2>

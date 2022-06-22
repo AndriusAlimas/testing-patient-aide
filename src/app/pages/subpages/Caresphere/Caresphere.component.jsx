@@ -21,10 +21,12 @@ import { caresphereData } from "../../../demo-data/dummyCaresphere";
 // Component
 export default function Caresphere() {
   const [popUp, setPopUp] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
-  );
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
   const caresphereContact = useRef("");
+
+  const nok = useSelector((state) => {
+    return state.user.nextOfKin;
+  });
 
   return (
     <motion.div
@@ -34,47 +36,50 @@ export default function Caresphere() {
       transition={pageTransitionsStyle.transition}
     >
       <SectionContainer id="mobile">
-        {popUp ? (
+        {popUp && (
           <CaresphereContactDetails
             popUp={popUp}
             setPopUp={setPopUp}
-            caresphereContact={caresphereContact.current}
+            caresphereContact={nok}
           />
-        ) : null}
+        )}
         <PageHeader title={"Care Contacts"} returnRoute={"/dashboard"} />
         <div id="iconBg">
-          <img src={careContactsIcon} id="careContactsIcon" />
+          <img
+            src={careContactsIcon}
+            id="careContactsIcon"
+            alt="Care Contacts"
+          />
         </div>
         <ListViewContainer>
           <ul className="careSphereList">
-            {caresphereData.map((contact, index) => (
-              <li
-                id="cardContainer"
-                key={index}
-                onClick={() => {
-                  setPopUp(!popUp);
-                  caresphereContact.current = contact;
-                }}
-              >
-                <div id="cardTextContainer">
-                  <h2 id="cardHeader">{contact.relationship}</h2>
-                  <h3 className="cardDetailText">
-                    {contact.ID
-                      ? `${contact.firstName} ${contact.surname}`
-                      : "No Known Allergies"}
-                  </h3>
-                  <div className="contactInfoContainer">
-                    <h4 className="cardDetailText">
-                      <span id="telephone">{contact.telephone}</span>
-                    </h4>
-                  </div>
-                  <div className="arrowIcon">
-                    <p>Details</p>
-                    <img src={rightArrow} alt="right arrow" />
-                  </div>
+            {/* {caresphereData.map((contact, index) => ( */}
+            <li
+              id="cardContainer"
+              key={nok.ID}
+              onClick={() => {
+                setPopUp(!popUp);
+              }}
+            >
+              <div id="cardTextContainer">
+                <h2 id="cardHeader">{nok.relationship}</h2>
+                <h3 className="cardDetailText">
+                  {nok.ID
+                    ? `${nok.firstname} ${nok.surname}`
+                    : "No Known Allergies"}
+                </h3>
+                <div className="nokInfoContainer">
+                  <h4 className="cardDetailText">
+                    <span id="telephone">{nok.telephone}</span>
+                  </h4>
                 </div>
-              </li>
-            ))}
+                <div className="arrowIcon">
+                  <p>Details</p>
+                  <img src={rightArrow} alt="right arrow" />
+                </div>
+              </div>
+            </li>
+            {/* ))} */}
           </ul>
         </ListViewContainer>
       </SectionContainer>

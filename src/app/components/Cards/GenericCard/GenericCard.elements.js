@@ -31,6 +31,9 @@ export const GenericCardContainer = styled.div`
     color: #000;
     font-size: 1rem;
   }
+  select {
+    width: 7rem;
+  }
   // Card Container - Tablet view
   @media ${deviceMaxWidth.tablet} {
     height: ${(props) =>
@@ -277,26 +280,26 @@ export const GenericCardContainer = styled.div`
     }
   }
 
-.download-ics{
+  .download-ics {
     height: 2.5rem;
     margin: 1rem auto;
     display: inline-block;
-    ${'' /* width: 9rem; */}
+    ${"" /* width: 9rem; */}
     border: 1px solid #1890ff;
     background-color: #248cfc;
     border-radius: 0.6rem;
-    ${'' /* width: 80%; */}
-}
-  .download-ics img{
+    ${"" /* width: 80%; */}
+  }
+  .download-ics img {
     width: 1.7rem;
     margin: 0 0.7rem;
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(348deg) brightness(103%) contrast(101%);
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(348deg)
+      brightness(103%) contrast(101%);
   }
-  .download-ics h3{
-  
+  .download-ics h3 {
     margin: 0 0.2rem;
     line-height: normal;
-    
+
     font-size: 1rem;
     color: #fff;
   }

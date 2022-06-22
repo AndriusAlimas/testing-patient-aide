@@ -5,8 +5,8 @@ export const checkUserCredentials = createAsyncThunk(
   "user/login",
   async ({ values }) => {
     try {
-      const localUrl = "http://localhost:8080";
       const apiLogin = process.env.REACT_APP_LOGIN_API;
+      const localUrl = "http://localhost:8080";
       const currentUrl = apiLogin;
 
       const config = {
@@ -22,22 +22,23 @@ export const checkUserCredentials = createAsyncThunk(
       };
       const response = await axios(config);
       const data = await response.data;
+
       return data;
     } catch (error) {
       console.log("Error", error.response.data);
+      throw Error(error);
     }
   }
 );
 
-export const getUserDetails = createAsyncThunk(
-  "getUserDetails",
-  async (arg, { getState }) => {
-    // const state = getState();
+export const getClinicianDetails = createAsyncThunk(
+  "getClinicianDetails",
+  async () => {
     const apiUrl = process.env.REACT_APP_API_URL;
     const apiService = process.env.REACT_APP_SERVICE;
     const apiVersion = process.env.REACT_APP_API_VERSION;
-    const username = "sungureanu";
-    const password = "Lorenzo!45";
+    const username = "fbadea";
+    const password = "Lorenzo2!";
 
     try {
       const config = {
@@ -53,27 +54,23 @@ export const getUserDetails = createAsyncThunk(
       return data;
     } catch (error) {
       console.log("Error", error.response.data);
+      throw Error(error);
     }
   }
 );
 
-export const signupUser2 = createAsyncThunk(
+export const signupUser = createAsyncThunk(
   "user/signup",
   async ({ credentials, setFieldError, setSubmitting }) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const apiService = process.env.REACT_APP_SERVICE;
-      const apiVersion = process.env.REACT_APP_API_VERSION;
-      const username = "sungureanu";
-      const password = "Lorenzo!45";
+      const username = "fbadea";
+      const password = "Lorenzo2!";
       const localUrl = "http://localhost:8080";
       const apiLogin = process.env.REACT_APP_LOGIN_API;
       const currentUrl = apiLogin;
 
       const config = {
         method: "put",
-        // url: `${apiUrl}/${apiService}/${apiVersion}/claimSet?UserName=${username}&Password=${password}`,
-        // url: "https://lorenzosv.demo.cloud.healthcare-uk.dxc.technology/LMHIAService/api/v2/claimSet?UserName=mrearden&Password=Lorenzo!23",
         url: `${currentUrl}/user/signup`,
         auth: {
           email: credentials.email,
@@ -87,12 +84,74 @@ export const signupUser2 = createAsyncThunk(
       };
       const response = await axios(config);
       const data = await response.data;
-      console.log(data);
+
       return data;
     } catch (error) {
-      console.log("here");
-
       console.log("Error", error.response.data);
+      throw Error(error);
+    }
+  }
+);
+
+export const getPatientDetails = createAsyncThunk(
+  "getPatientDetails",
+  async (arg, { getState }) => {
+    // const state = getState();
+    // const apiUrl = process.env.REACT_APP_API_URL;
+    // const apiService = process.env.REACT_APP_SERVICE;
+    // const apiVersion = process.env.REACT_APP_API_VERSION;
+    // const username = "fbadea";
+    // const password = "Lorenzo12!";
+    const state = getState();
+    const envURL = `https://oneedfhirtest.azurewebsites.net`;
+    const apiService = `GetPatient`;
+    let patientId = `70470`;
+    const token = state.user.token;
+    // https://oneedfhirtest.azurewebsites.net/GetPatient/70745
+    try {
+      const config = {
+        method: "get",
+        url: `${envURL}/${apiService}/${patientId}`,
+        headers: {
+          accept: "application/json",
+          "Authorization-token": token,
+        },
+      };
+      const response = await axios(config);
+      const data = await response.data;
+      return data;
+    } catch (error) {
+      console.log("Error", error.response.data);
+      throw Error(error);
+    }
+  }
+);
+
+export const getNextOfKin = createAsyncThunk(
+  "getNextOfKin",
+  async (arg, { getState }) => {
+    const state = getState();
+    const envURL = `https://oneedfhirtest.azurewebsites.net`;
+    const apiService = `GetNokInfo`;
+    let patientId = `70470`;
+    const token = state.user.token;
+
+    try {
+      const config = {
+        method: "get",
+        url: `${envURL}/${apiService}/${patientId}`,
+        headers: {
+          accept: "application/json",
+          "Authorization-token": token,
+        },
+      };
+
+      const response = await axios(config);
+      const data = await response.data;
+      return data;
+    } catch (error) {
+      console.log("Error", error.response.data);
+      throw Error(error);
     }
   }
 );
@@ -106,10 +165,14 @@ export const userSlice = createSlice({
     checkedCredentials: false,
     errorMessage: "",
     checkingCredentialsResponse: {},
-    userDetails: {},
+    clinicianDetails: {},
     token: "",
     isAuthenticated: false,
-    getUserDetailsStatus: false,
+    getClinicianStatus: false,
+    userDetails: [],
+    userDetailsStatus: false,
+    nextOfKin: [],
+    nokStatus: false,
   },
   reducers: {
     updateCheckedCredentials: (state, { payload }) => {
@@ -122,7 +185,6 @@ export const userSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.isFetching = false;
-
       return state;
     },
   },
@@ -141,32 +203,52 @@ export const userSlice = createSlice({
     [checkUserCredentials.pending]: (state) => {
       state.isFetching = true;
     },
-    [getUserDetails.fulfilled]: (state, { payload }) => {
-      state.userDetails = payload;
-      state.getUserDetailsStatus = true;
+    [getClinicianDetails.fulfilled]: (state, { payload }) => {
+      state.clinicianDetails = payload;
+      state.getClinicianStatus = true;
       state.isFetching = false;
       state.token = payload.ControlActEvent.Subject.Value[0].SecurityToken;
     },
-    [getUserDetails.rejected]: (state, { payload }) => {
-      state.getUserDetailsStatus = false;
+    [getClinicianDetails.rejected]: (state, { payload }) => {
+      state.getClinicianStatus = false;
       state.isFetching = false;
       // TODO lorenzo error handling
     },
-    [getUserDetails.pending]: (state) => {
+    [getClinicianDetails.pending]: (state) => {
       state.isFetching = true;
     },
-    [signupUser2.fulfilled]: (state, { payload }) => {
+    [signupUser.fulfilled]: (state, { payload }) => {
       state.email = payload.email;
       state.isFetching = false;
       state.isSuccess = true;
       return state;
     },
-    [signupUser2.rejected]: (state, { payload }) => {
+    [signupUser.rejected]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
     },
-    [signupUser2.pending]: (state) => {
+    [signupUser.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [getPatientDetails.fulfilled]: (state, { payload }) => {
+      state.userDetails = payload;
+      state.userDetailsStatus = true;
+    },
+    [getPatientDetails.rejected]: (state, { payload }) => {
+      state.userDetailsStatus = false;
+    },
+    [getPatientDetails.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [getNextOfKin.fulfilled]: (state, { payload }) => {
+      state.nextOfKin = payload;
+      state.nokStatus = true;
+    },
+    [getNextOfKin.rejected]: (state, { payload }) => {
+      state.nokStatus = false;
+    },
+    [getNextOfKin.pending]: (state) => {
       state.isFetching = true;
     },
   },

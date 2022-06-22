@@ -66,8 +66,8 @@ export const conditions = {
   Category: "Category",
   CreatedAt: "Created At",
   CreatedBy: "Created By",
-  CreatedByID: "Created By ID",
-  status: "Status",
+  ID: "ID",
+  Severity: "Severity",
 };
 
 // Procedures
@@ -85,16 +85,21 @@ export const procedure = {
 
 // Medication
 export const medication = {
-  Name: "Name",
-  Direction: "Direction",
-  StartDate: "Start Date",
-  Duration: "Duration",
-  AdminMethod: "Admin Method",
-  Dose: "Dose",
-  Quantity: "Quantity",
-  Frequency: "Frequency",
-  AdditionalComments: "Additional Comments",
+  name: "Name",
+  direction: "Direction",
+  startDate: "Start Date",
+  duration: "Duration",
+  adminMethod: "Admin Method",
+  dosage: "Dosage",
+  quantity: "Quantity",
+  frequency: "Frequency",
+  additionalComments: "Additional Comments",
   id: "ID",
+  dosageRoute: "Dosage Route",
+  reviewPeriod: "Review Period",
+  reviewDate: "Review Date",
+  instructions: "Instructions",
+  status: "Status",
 };
 
 // Caresphere Contact Information
@@ -152,4 +157,19 @@ export const AUTH = {
     "An email with your account confirmation link has been sent to your email: ",
   RESET_SUCCESSFULLY: "Your password has been reset successfully",
   MAY_LOGIN: "You may now login!",
+};
+
+// Appointment snippet from dashboard
+export const appointmentsSnippet = {
+  TODAY: "Today",
+  NO_TODAY_APPOINTMENTS: "No appointments for today",
+  NO_FUTURE_APPOINTMENTS: "No future appointments for you",
+  NO_APPOINTMENTS: "There are no appointments for you",
+};
+
+// Missing Route
+export const MISSING_ROUTE = {
+  TITLE: "Oops!",
+  MESSAGE: "Page Not Found",
+  HOMEPAGE_LINK: "Visit Our Homepage",
 };

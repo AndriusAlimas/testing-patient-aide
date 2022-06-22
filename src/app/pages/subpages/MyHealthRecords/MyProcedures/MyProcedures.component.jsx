@@ -1,11 +1,14 @@
 // Import: Packages
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Import: Elements
 import { SectionContainer } from "./MyProcedures.elements";
 import { ListViewContainer } from "../../../../styles/ListsView/ListView.elements";
+
+// Import: reducer
+import { getProcedureDetail } from "../../../../../redux/slices/ProceduresSlice";
 
 // Import: Components
 import { PageHeader } from "../../../../components";
@@ -15,16 +18,14 @@ import MyProcedureDetails from "./MyProcedureDetails/MyProcedureDetails.componen
 import proceduresIcon from "../../../../../assets/img/icons/dashboardProceduresIcon.svg";
 import rightArrow from "../../../../../assets/img/icons/Left-Chevron.svg";
 
-// Import: DummyData
-import { procedures } from "../../../../demo-data/dummyProcedureData";
-
 // Component: MyConditions
 export default function MyProcedures({ sidebar }) {
   const [popUp, setPopUp] = useState(false);
-  const { pageTransitionsStyle } = useSelector(
-    (state) => state.pageTransitions
+  const { pageTransitionsStyle } = useSelector((state) => state.uiTriggers);
+  const dispatch = useDispatch();
+  const proceduresList = useSelector(
+    (state) => state.procedures.procedures.proceduresList
   );
-  const procedureDetails = useRef("");
 
   return (
     <motion.div
@@ -67,49 +68,46 @@ export default function MyProcedures({ sidebar }) {
 
         <div className="mobileVersion">
           {popUp ? (
-            <MyProcedureDetails
-              popUp={popUp}
-              setPopUp={setPopUp}
-              procedureDetails={procedureDetails.current}
-            />
+            <MyProcedureDetails popUp={popUp} setPopUp={setPopUp} />
           ) : null}
           <PageHeader title={"Procedures"} returnRoute={"/dashboard"} />
           <div id="iconBg">
-            <img id="proceduresIcon" src={proceduresIcon} />
+            <img id="proceduresIcon" src={proceduresIcon} alt="Procedures" />
           </div>
 
           <ListViewContainer>
             <ul>
-              {procedures.map((procedures, index) => (
-                <li
-                  id="cardContainer"
-                  key={index}
-                  onClick={() => {
-                    setPopUp(!popUp);
-                    procedureDetails.current = procedures;
-                  }}
-                >
-                  <div id="cardTextContainer">
-                    <h2 id="cardHeader">
-                      {procedures.ProcedureName
-                        ? procedures.ProcedureName
-                        : "No Current Procedures"}
-                    </h2>
-                    <div className="allergySeverityContainer">
-                      <h3 className=" cardDetailText">
-                        Status:{" "}
-                        <span>
-                          {procedures.Status ? procedures.Status : "N/A"}
-                        </span>
-                      </h3>
-                      <div className="arrowIcon">
-                        <p>Details</p>
-                        <img src={rightArrow} alt="right arrow" />
+              {proceduresList.length > 0 &&
+                proceduresList.map((procedures, index) => (
+                  <li
+                    id="cardContainer"
+                    key={index}
+                    onClick={() => {
+                      setPopUp(!popUp);
+                      dispatch(getProcedureDetail());
+                    }}
+                  >
+                    <div id="cardTextContainer">
+                      <h2 id="cardHeader">
+                        {procedures.procedureName
+                          ? procedures.procedureName
+                          : "No Current Procedures"}
+                      </h2>
+                      <div className="allergySeverityContainer">
+                        <h3 className=" cardDetailText">
+                          Status:{" "}
+                          <span>
+                            {procedures.status ? procedures.status : "N/A"}
+                          </span>
+                        </h3>
+                        <div className="arrowIcon">
+                          <p>Details</p>
+                          <img src={rightArrow} alt="right arrow" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                ))}
             </ul>
           </ListViewContainer>
         </div>

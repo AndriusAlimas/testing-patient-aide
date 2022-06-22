@@ -2,11 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavigationContainer } from "./Navigation.elements";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 export default function Navigation() {
   const location = useLocation();
   const [selectedPage, setSelectedPage] = useState(location.pathname);
-  const { scrollYStatus } = useSelector((state) => state.scrollYStatus);
+  const { scrollYStatus } = useSelector((state) => state.uiTriggers);
+
+  const handleOnClick = async () => {
+    const config = {
+      method: "get",
+      url: "http://localhost:8080/user/myHealth",
+      params: {
+        orgId: "5e8b81d79ad68b00b03b8cc0",
+        token: "7d0b5d7159a1e54e54dfc7a27f41d751",
+      },
+      headers: { "Content-Type": "application/json" },
+    };
+
+    const response = await axios(config);
+    const data = await response.data;
+    console.log(data);
+  };
 
   useEffect(() => {
     setSelectedPage(location.pathname);
@@ -30,7 +47,11 @@ export default function Navigation() {
             Home
           </h2>
         </Link>
-        <Link to="/health-tracker" className="navButton">
+        <Link
+          to="/health-tracker"
+          className="navButton"
+          onClick={handleOnClick}
+        >
           <svg
             id="myHealthIcon"
             xmlns="http://www.w3.org/2000/svg"
